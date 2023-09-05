@@ -93,7 +93,8 @@ WHERE stkphy <= (stkale * 1.5) AND delliv < 30;
 SELECT numfou, stkphy 
 FROM vente
 JOIN produit ON produit.codart = vente.codart
-WHERE produit.codart = produit.codart GROUP BY numfou ORDER BY 'stock' DESC;
+GROUP BY numfou 
+ORDER BY stkphy DESC;
 
 --En fin d'année, sortir la liste des produits dont la quantité réellement commandée dépasse 90% de la quantité annuelle prévue.
 SELECT libart, qtecde 
@@ -105,7 +106,8 @@ HAVING qteann * 0.90 < qtecde;
 --Calculer le chiffre d'affaire par fournisseur pour l'année 93 sachant que les prix indiqués sont hors taxes et que le taux de TVA est 20%.
 SELECT numfou, qtecde * priuni * 0.20 
 FROM ligcom 
-JOIN entcom ON entcom.numcom = ligcom.numcom 
+JOIN entcom ON entcom.numcom = ligcom.numcom
+WHERE  YEAR(datcom) = 1993
 GROUP BY numfou;
 
 
