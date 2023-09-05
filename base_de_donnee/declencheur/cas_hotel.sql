@@ -27,7 +27,7 @@ CREATE TRIGGER insert_reservation2 AFTER INSERT ON reservation
     FOR EACH ROW
     BEGIN
         DECLARE nbr_res INT;
-        SET nbr_res = (SELECT COUNT(*) FROM reservation WHERE res_id = NEW.res_id GROUP BY res_cli_id);
+        SET nbr_res = (SELECT COUNT(*) FROM reservation WHERE res_cli_id = NEW.res_cli_id GROUP BY res_cli_id);
         IF nbr_res >= 3 THEN
             SIGNAL SQLSTATE '40000' set MESSAGE_TEXT = 'il peut plus reserver';
         END IF;
