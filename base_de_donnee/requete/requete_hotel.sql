@@ -99,4 +99,4 @@ FROM station
 JOIN hotel ON hot_sta_id = sta_id 
 JOIN chambre ON cha_hot_id = hot_id 
 JOIN reservation ON res_cha_id = cha_id 
-GROUP BY sta_id; 
+GROUP BY sta_nom; 
