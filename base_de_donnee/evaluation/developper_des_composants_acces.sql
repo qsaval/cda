@@ -105,16 +105,14 @@ DELIMITER ;
 CALL delais_liv();
 
 --3)
-CREATE TRIGGER v_pays AFTER INSERT ON orders
+CREATE TRIGGER v_pays AFTER INSERT ON `order details`
 FOR EACH ROW
 BEGIN
     DECLARE costumer_country VARCHAR(255);
-    DECLARE supplier_country1 VARCHAR(255);
-    SET costumer_country = (SELECT country FROM customers WHERE `CustomerID` = NEW.`CustomerID`);
-    SET supplier_country = (SELECT country FROM suppliers JOIN products ON suppliers.`SupplierID` = products.`SupplierID` JOIN `order details` ON products.`ProductID` = `order details`.`ProductID` JOIN orders ON orders.`OrderID` = `order details`.`OrderID` WHERE orders.`OrderID` = NEW.`OrderID`)
-    IF costumer_country != suplier_country THAN
+    DECLARE supplier_country VARCHAR(255);
+    SET costumer_country = (SELECT country FROM customers JOIN orders ON orders.`CustomerID` = costomers.`CustomerID`  WHERE `OrderID` = NEW.`OrderID`);
+    SET supplier_country = (SELECT country FROM suppliers JOIN products ON suppliers.`SupplierID` = products.`SupplierID` JOIN `order details` ON products.`ProductID` = `order details`.`ProductID` WHERE `ProductID` = NEW.`ProductID`);
+    IF costumer_country != supplier_country THEN
         SIGNAL SQLSTATE '40000' SET MESSAGE_TEXT = 'le client et le fournisseur sont pas dans le meme pays';
     END IF;
 END;
-
-SELECT country FROM suppliers JOIN products ON suppliers.`SupplierID` = products.`SupplierID` JOIN `order details` ON products.`ProductID` = `order details`.`ProductID` JOIN orders ON orders.`OrderID` = `order details`.`OrderID` WHERE `order details`.`OrderID`= 10261;
