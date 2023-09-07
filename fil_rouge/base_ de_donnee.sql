@@ -126,3 +126,4 @@ CREATE TABLE est_livraie_par(
    FOREIGN KEY(Id_commande) REFERENCES commande(Id_commande),
    FOREIGN KEY(Id_livraison) REFERENCES livraison(Id_livraison)
 );
+
