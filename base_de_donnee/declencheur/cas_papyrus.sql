@@ -7,3 +7,5 @@ CREATE TRIGGER alerte_produit AFTER UPDATE ON produit
             UPDATE article_a_commande SET qte = diff-qte WHERE codart = NEW.codart;
         END IF;
     END;
+
+SHOW TRIGGERs;
