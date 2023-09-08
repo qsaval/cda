@@ -1,3 +1,4 @@
+DROP DATABASE vente_bd;
 CREATE DATABASE vente_bd;
 
 USE vente_bd
@@ -97,6 +98,7 @@ CREATE TABLE commande(
    montant_commande DECIMAL(7,2)  ,
    date_commande DATE,
    etat_commande INT,
+   date_facture DATE,
    facture VARCHAR(255) ,
    adresse_facture VARCHAR(255) ,
    cp_facture VARCHAR(5) ,
@@ -105,13 +107,14 @@ CREATE TABLE commande(
    Id_utilisateur INT NOT NULL,
    PRIMARY KEY(Id_commande),
    FOREIGN KEY(Id_utilisateur) REFERENCES utilisateur(Id_utilisateur)
-);
+)
 
 CREATE TABLE acheter(
    Id_bd INT,
    Id_commande INT,
    nb_commander VARCHAR(50) ,
    prix_commande DECIMAL(6,2)  ,
+   solde INT,
    PRIMARY KEY(Id_bd, Id_commande),
    FOREIGN KEY(Id_bd) REFERENCES bd(Id_bd),
    FOREIGN KEY(Id_commande) REFERENCES commande(Id_commande)
@@ -126,4 +129,24 @@ CREATE TABLE est_livraie_par(
    FOREIGN KEY(Id_commande) REFERENCES commande(Id_commande),
    FOREIGN KEY(Id_livraison) REFERENCES livraison(Id_livraison)
 );
+
+--sauvegade/restauration
+
+--mysqldump --user=admin --password=Afpa1234 vente_bd > backup_vente_bd.sql
+
+--cat backup_vente_bd.sql | mysql --user=admin --password=Afpa1234 vente_bd
+
+
+-- requete
+SELECT MONTH(date_commande), SUM(nb_commander * prix_commande)
+FROM acheter
+JOIN commande ON commande.id_commande = acheter.id_commande
+GROUP BY MONTH(date_commande);
+
+SELECT nom_fournisseur, SUM(nb_commander * prix_commande)
+FROM acheter
+JOIN bd ON bd.Id_bd = acheter.Id_bd
+JOIN fournisseur ON fournisseur.id_fournisseur = bd.id_fournisseur
+GROUP BY nom_fournisseur;
+
 
