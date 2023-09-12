@@ -43,3 +43,17 @@ CREATE TRIGGER insert_chambre AFTER INSERT ON chambre
             SIGNAL SQLSTATE '40000' SET MESSAGE_TEXT = 'on peut plus inserer de chambre';
         END IF;
     END;
+
+
+--exemple
+CREATE TRIGGER insert_station AFTER INSERT ON station
+    FOR EACH ROW
+    BEGIN
+        DECLARE altitude INT;
+        SET altitude = NEW.sta_altitude;
+        IF altitude<1000 THEN
+            SIGNAL SQLSTATE '40000' SET MESSAGE_TEXT = 'Un problème est survenu. Règle de gestion altitude !';
+        END IF;
+END;
+
+insert into station (sta_nom, sta_altitude) values ('station du bas', 666);
