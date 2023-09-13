@@ -1,3 +1,5 @@
+DROP DATABASE if EXISTS 
+
 CREATE TABLE categorie(
    Id_categorie INT AUTO_INCREMENT,
    nom_categorie VARCHAR(255) ,
