@@ -1,4 +1,8 @@
-DROP DATABASE if EXISTS 
+DROP DATABASE IF EXISTS vente_bd;
+
+CREATE DATABASE vente_bd;
+
+USE vente_bd;
 
 CREATE TABLE categorie(
    Id_categorie INT AUTO_INCREMENT,
@@ -22,6 +26,7 @@ CREATE TABLE utilisateur(
    Id_utilisateur INT AUTO_INCREMENT,
    nom_utilisateur VARCHAR(255) ,
    prenom_utilisateur VARCHAR(255) ,
+   email_utilisateur VARCHAR(255) ,
    mdp_utilisateur VARCHAR(255) ,
    adresse_facturation VARCHAR(255) ,
    ville_facturation VARCHAR(255) ,
