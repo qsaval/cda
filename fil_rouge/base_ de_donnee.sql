@@ -139,4 +139,3 @@ CREATE TABLE contient(
    FOREIGN KEY(Id_bd) REFERENCES bd(Id_bd),
    FOREIGN KEY(Id_colis) REFERENCES colis(Id_colis)
 );
- 뱬
