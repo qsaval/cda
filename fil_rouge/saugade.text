@@ -1,0 +1,3 @@
+mysqldump --user=admin --password=Afpa1234 vente_bd > backup_vente_bd.sql
+
+cat backup_vente_bd.sql | mysql --user=admin --password=Afpa1234 vente_bd
