@@ -115,7 +115,7 @@ CREATE TABLE livraison(
 CREATE TABLE acheter(
    Id_bd INT,
    Id_commande INT,
-   nb_commander VARCHAR(50) ,
+   nb_commander INT ,
    prix_commande DECIMAL(6,2)  ,
    PRIMARY KEY(Id_bd, Id_commande),
    FOREIGN KEY(Id_bd) REFERENCES bd(Id_bd),
@@ -125,7 +125,7 @@ CREATE TABLE acheter(
 CREATE TABLE est_livraie_par(
    Id_bd INT,
    Id_livraison INT,
-   nb_livrer VARCHAR(50) ,
+   nb_livrer INT ,
    PRIMARY KEY(Id_bd, Id_livraison),
    FOREIGN KEY(Id_bd) REFERENCES bd(Id_bd),
    FOREIGN KEY(Id_livraison) REFERENCES livraison(Id_livraison)
