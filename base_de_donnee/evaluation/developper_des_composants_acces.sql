@@ -1,5 +1,5 @@
 --Northwind
---1)
+--1)requete
 --Liste des contacts français
 SELECT CompanyName as Société, ContactName as contact, ContactTitle as Fonction, Phone as téléphone
 FROM customers
@@ -73,7 +73,7 @@ SELECT ROUND(AVG(DATEDIFF( `ShippedDate`, `OrderDate`))) as `Délai moyen de liv
 FROM orders
 
 
---2)
+--2)procedure stokee
 --pour la requete 9
 DELIMITER |
 
@@ -104,7 +104,7 @@ DELIMITER ;
 
 CALL delais_liv();
 
---3)
+--3)trigger
 CREATE TRIGGER v_pays AFTER INSERT ON `order details`
 FOR EACH ROW
 BEGIN

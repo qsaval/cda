@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS vente_bd;
 
 CREATE DATABASE vente_bd;
 
-USE vente_bd;
+use vente_bd;
 
 CREATE TABLE categorie(
    Id_categorie INT AUTO_INCREMENT,
@@ -50,29 +50,13 @@ CREATE TABLE fournisseur(
 );
 
 INSERT INTO `fournisseur` (`Id_fournisseur`, `nom_fournisseur`, `nom_contact`, `telephone_contact`, `adresse_fournisseur`, `ville_fournisseur`, `cp_fournisseur`) VALUES
-(1, NULL, 'Lucien Dupont', '06351425', '15 rue du marechal feran', 'paris', '95000');
-
-CREATE TABLE livraison(
-   Id_livraison INT AUTO_INCREMENT,
-   nom_entreprise VARCHAR(255) ,
-   adresse_entreprise VARCHAR(255) ,
-   cp_livreur VARCHAR(5) ,
-   ville_livreur VARCHAR(255) ,
-   telephone_livreur VARCHAR(50) ,
-   PRIMARY KEY(Id_livraison)
-);
-
-CREATE TABLE colis(
-   Id_colis INT AUTO_INCREMENT,
-   PRIMARY KEY(Id_colis)
-);
+(1, NULL, 'Lucien Dupon', '06351425', '15 rue du marechal feran', 'paris', '95000');
 
 CREATE TABLE bd(
    Id_bd INT AUTO_INCREMENT,
    titre VARCHAR(255) ,
    image_bd VARCHAR(255) ,
    auteur VARCHAR(255) ,
-   dessinateur VARCHAR(255) ,
    editeur VARCHAR(255) ,
    date_edition DATE,
    resume TEXT,
@@ -112,11 +96,20 @@ CREATE TABLE commande(
    cp_facture VARCHAR(5) ,
    ville_facture VARCHAR(255) ,
    nbr_colis INT,
-   Id_colis INT NOT NULL,
    Id_utilisateur INT NOT NULL,
    PRIMARY KEY(Id_commande),
-   FOREIGN KEY(Id_colis) REFERENCES colis(Id_colis),
    FOREIGN KEY(Id_utilisateur) REFERENCES utilisateur(Id_utilisateur)
+);
+
+CREATE TABLE livraison(
+   Id_livraison INT AUTO_INCREMENT,
+   date_livraison VARCHAR(50) ,
+   nom_transporteur VARCHAR(255) ,
+   retard_eventuel BOOLEAN,
+   telephone_livreur VARCHAR(50) ,
+   Id_commande INT NOT NULL,
+   PRIMARY KEY(Id_livraison),
+   FOREIGN KEY(Id_commande) REFERENCES commande(Id_commande)
 );
 
 CREATE TABLE acheter(
@@ -130,19 +123,10 @@ CREATE TABLE acheter(
 );
 
 CREATE TABLE est_livraie_par(
-   Id_livraison INT,
-   Id_colis INT,
-   date_livraison VARCHAR(50) ,
-   retard_eventuel BOOLEAN,
-   PRIMARY KEY(Id_livraison, Id_colis),
-   FOREIGN KEY(Id_livraison) REFERENCES livraison(Id_livraison),
-   FOREIGN KEY(Id_colis) REFERENCES colis(Id_colis)
-);
-
-CREATE TABLE contient(
    Id_bd INT,
-   Id_colis INT,
-   PRIMARY KEY(Id_bd, Id_colis),
+   Id_livraison INT,
+   nb_livrer VARCHAR(50) ,
+   PRIMARY KEY(Id_bd, Id_livraison),
    FOREIGN KEY(Id_bd) REFERENCES bd(Id_bd),
-   FOREIGN KEY(Id_colis) REFERENCES colis(Id_colis)
+   FOREIGN KEY(Id_livraison) REFERENCES livraison(Id_livraison)
 );
