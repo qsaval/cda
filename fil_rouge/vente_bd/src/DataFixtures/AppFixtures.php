@@ -44,17 +44,17 @@ class AppFixtures extends Fixture
             
         }
 
-        for ($z = 0; $z < 2; $z++) {
+        for ($z = 0; $z < 3; $z++) {
             $catm = new Categorie();
             $catm->setNomCategorie($this->faker->word())
-                ->setImageCategorie($this->faker->image())
+                ->setImageCategorie($this->faker->imageUrl())
                 ->setCategorie(null);
             $manager->persist($catm);
 
             for ($i = 0; $i < 2; $i++) {
                 $cat = new Categorie();
                 $cat->setNomCategorie($this->faker->word())
-                    ->setImageCategorie($this->faker->image())
+                    ->setImageCategorie($this->faker->imageUrl())
                     ->setCategorie($catm);
                 $manager->persist($cat);
 
@@ -67,15 +67,16 @@ class AppFixtures extends Fixture
                     ->setCpFournisseur(strval($this->faker->postcode()));
                 $manager->persist($four);
 
-                for ($j = 0; $j < 2; $j++) {
+                for ($j = 0; $j < 7; $j++) {
                     $bd = new Bd();
                     $bd->setCategorie($cat)
                         ->setFournisseur($four)
                         ->setTitre($this->faker->word())
-                        ->setImageBd($this->faker->image())
+                        ->setImageBd($this->faker->imageUrl())
                         ->setAuteur($this->faker->name())
                         ->setEditeur($this->faker->word())
                         ->setDateEdition($this->faker->dateTime())
+                        ->setStock(mt_rand(0,500))
                         ->setResume($this->faker->text(300))
                         ->setPrix(mt_rand(6, 10));
                     $manager->persist($bd);

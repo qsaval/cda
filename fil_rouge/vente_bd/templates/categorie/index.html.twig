@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block body %}
+<h1 class="mb-5">Categories</h1>
+<div class="row">
+    {% for cat in cats %} 
+    <div class="col-lg-6 mb-3 d-flex justify-content-center">
+        <div class="card" style="width: 18rem;">
+            <img src="{{ cat.imageCategorie }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h2 class="card-title">{{ cat.nomCategorie }}</h2>
+                <a href="{{ path('app_list_bd', {'id': cat.id}) }}" class="btn btn-primary">Liste des Categories</a>
+            </div>
+        </div>
+    </div>
+    
+    {% endfor %}
+    
+    </div>
+{% endblock %}

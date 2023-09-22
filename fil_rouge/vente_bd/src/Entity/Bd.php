@@ -49,6 +49,9 @@ class Bd
     #[ORM\OneToMany(mappedBy: 'idBd', targetEntity: DetailLivraison::class)]
     private Collection $detailLivraisons;
 
+    #[ORM\Column]
+    private ?int $stock = null;
+
     public function __construct()
     {
         $this->detailCommandes = new ArrayCollection();
@@ -224,6 +227,18 @@ class Bd
                 $detailLivraison->setBd(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStock(): ?int
+    {
+        return $this->stock;
+    }
+
+    public function setStock(int $stock): static
+    {
+        $this->stock = $stock;
 
         return $this;
     }

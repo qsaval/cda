@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acceuil{% endblock %}
+
+{% block body %}
+<div class="my-5 px-5">
+    <div id="carouselExample" class="carousel slide mt-2" data-bs-ride="carousel" >
+        <div class="carousel-inner">
+            {% for bd in bds %}
+            <div class="carousel-item active" data-bs-interval="2750">
+                <div class="d-lg-flex">
+                    <img class="d-block" src="{{ bd.imageBd }}" alt="First slide" width="500">
+                    <div class="bg-primary-subtle w-100 row mx-1">
+                        <div class="col-lg-6 ms-lg-5">
+                            <h2>{{ bd.titre }}</h2>
+                            <br>
+                            <p><b>Auteur :</b> {{ bd.auteur }}</p>
+                            <br class="nbr">
+                            <p><b>Editeur :</b> {{ bd.editeur }}</p>
+                            <br class="nbr">
+                            <p><b>Date d'aparition :</b> {{ bd.dateEdition|date('d/m/Y') }}</p>
+                        </div>
+                        <div class="col-lg-5 align-self-center">
+                            <p class="fs-lg-1 fs-3"> <b>Prix :</b> {{ bd.prix }}€</p>
+                            <a class="btn btn-lg btn-primary ms-5 mb-3" href="{{ path('app_bd', {'id': bd.id}) }}">Détail</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="row">
+{% for cat in cats %} 
+<div class="col-lg-4 mb-3 d-flex justify-content-center">
+    <div class="card " style="width: 18rem;">
+        <img src="{{ cat.imageCategorie }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h2 class="card-title">{{ cat.nomCategorie }}</h2>
+            <a href="{{ path('app_categorie', {'id': cat.id}) }}" class="btn btn-primary">Liste des Categories</a>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

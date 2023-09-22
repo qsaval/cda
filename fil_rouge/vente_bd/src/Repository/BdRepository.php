@@ -21,20 +21,19 @@ class BdRepository extends ServiceEntityRepository
         parent::__construct($registry, Bd::class);
     }
 
-//    /**
-//     * @return Bd[] Returns an array of Bd objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('b')
-//            ->andWhere('b.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('b.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return Bd[] Returns an array of Bd objects
+    */
+   public function findByExampleField(): array
+   {
+       return $this->createQueryBuilder('b')
+           ->groupBy('b.categorie')
+           ->orderBy('b.id', 'ASC')
+           ->setMaxResults(3)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?Bd
 //    {

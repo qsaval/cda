@@ -1,0 +1,53 @@
+<div class="d-flex justify-content-center">
+    <img src="/image/logo.png" width="175" height="200">
+</div>
+
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ms-3 row" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 col-lg-5">
+                <li class="nav-item mx-lg-2">
+                    <a class="nav-link active link-body-emphasis" aria-current="page" href="{{ path('app_home') }}">Acceuil</a>
+                </li>
+                <li class="nav-item mx-lg-2">
+                    <a class="nav-link active link-body-emphasis" aria-current="page" href="#">BD</a>
+                </li>
+                <li class="nav-item dropdown mx-lg-2">
+                    <a class="nav-link link-body-emphasis" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Comic
+                    </a>
+                    <ul class="dropdown-menu bg-primary">
+                        <li><a class="dropdown-item" href="#">DC</a></li>
+                        <li><a class="dropdown-item" href="#">Marvel</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown mx-lg-2">
+                    <a class="nav-link link-body-emphasis" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Manga
+                    </a>
+                    <ul class="dropdown-menu bg-primary">
+                        <li><a class="dropdown-item" href="#">Shonen</a></li>
+                        <li><a class="dropdown-item" href="#">Seinen</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="navbar-nav me-auto col-lg-7 d-flex justify-content-end">
+				{% if app.user %}
+					<li class="nav-item" style="margin-right: 5rem;">
+                        <a class="dropdown-item link-light lien" href="{{ path('app_logout') }}">Déconnexion</a>
+					</li>
+				{% else %}
+					<li class="nav-item">
+						<a class="nav-link active" href="{{ path('app_login') }}">Connexion</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="{{ path('app_register') }}">Inscription</a>
+					</li>
+				{% endif %}
+			</ul>
+        </div>
+    </div>
+</nav>
