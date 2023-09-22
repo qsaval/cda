@@ -5,7 +5,7 @@
 {% block body %}
 <div class="row mt-5">
     <div class="col-7 d-flex justify-content-center ms-4">
-        <img src="{{ bd.imageBd }}" alt="">
+        <img src="{{ bd.imageBd }}" alt="{{ bd.titre }}">
     </div>
     <div class="col-4 bg-primary-subtle d-flex justify-content-center py-5">
         <div>
@@ -19,7 +19,7 @@
             {% if bd.stock == 0 %}
             <p>cette bd n'est plus en stock</p>
             {% else %}
-            <a href="#" class="btn btn-primary">Panier</a>
+            <a href="{{ path('app_cart_add', {'id': bd.id}) }}" class="btn btn-lg btn-primary">Panier</a>
             {% endif %}
             
         </div>
