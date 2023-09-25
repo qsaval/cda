@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+{% for flash_error in app.flashes('verify_email_error') %}
+<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+{% endfor %}
+
+<div class="row d-flex justify-content-center mt-5">
+    <div class="col-6 bg-primary-subtle">
+        <div class="d-flex justify-content-center">
+           <div>
+                <h1>profile utilisateur</h1>
+                <div class="mt-5 row d-flex justify-content-center">
+                    <p class="col-10 "><b>Nom :</b> {{ user.nomUser}}</p>
+                    <p class="col-10"><b>Prenom :</b> {{ user.prenomUser}}</p>
+                    <p class="col-10"><b>Email :</b> {{ user.email }}</p>
+                    <p class="col-10"><b>Adresse facturation :</b> {{ user.adresseFacturation}}</p>
+                    <p class="d-flex justify-content-center">{{user.cpFacturation}} {{user.villeFacturation}}</p>
+                    <p class="col-10"><b>Adresse livraison :</b> {{ user.adresseLivraison}}</p>
+                    <p class="col-10 d-flex justify-content-center">{{user.cpLivraison}} {{user.villeLivraison}}</p>
+                    <a href="{{ path('app_profile_modif', {'id': user.id}) }}" class="btn btn-primary mb-5 col-10">Modifier</a>
+                </div>
+           </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

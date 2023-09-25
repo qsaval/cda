@@ -1,5 +1,13 @@
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
     .nbr{
         display: none;
+    }
+    
+    .ensemble{
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: space-around;
+        flex-wrap: nowrap;  
     }
 }

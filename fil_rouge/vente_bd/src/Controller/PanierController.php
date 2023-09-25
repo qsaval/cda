@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Commande;
-use App\Service\CartService;
+use App\Service\PanierService;
 use App\Service\MailService;
 use App\Entity\DetailCommande;
 use App\Repository\BdRepository;
@@ -16,19 +16,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PanierController extends AbstractController
 {
-    #[Route('/mon-panier', name: 'app_cart')]
-    public function index(CartService $cartService): Response
+    #[Route('/mon-panier', name: 'app_panier')]
+    public function index(PanierService $panierService): Response
     {
         return $this->render('panier/index.html.twig', [
-            'cart' => $cartService->getTotal()
+            'panier' => $panierService->getTotal()
         ]);
     }
 
-    #[Route('/mon-panier/valide', name: 'app_cart_valide')]
+    #[Route('/mon-panier/valide', name: 'app_panier_valide')]
     public function valide(Request $request, BdRepository $repo, EntityManagerInterface $em, MailService $mailService): Response
     {
         $session = $request->getSession();
-        $panier = $session->get('cart', []);
+        $panier = $session->get('panier', []);
 
         $commande = new Commande();
         $total = 0;
@@ -65,32 +65,31 @@ class PanierController extends AbstractController
         return $this->redirectToRoute('app_home');
     }
 
-    #[Route('/mon-panier/add/{id<\d+>}', name: 'app_cart_add')]
-    public function addToRoute(CartService $cartService, int $id): Response
+    #[Route('/mon-panier/add/{id<\d+>}', name: 'app_panier_add')]
+    public function addToRoute(PanierService $panierService, int $id): Response
     {
-        $cartService->addToCart($id);
-        return $this->redirectToRoute('app_cart');
+        $panierService->ajouterAuPanier($id);
+        return $this->redirectToRoute('app_panier');
     }
 
-    #[Route('/mon-panier/remove/{id<\d+>}', name: 'app_cart_remove')]
-    public function removeToCart(CartService $cartService, int $id): Response
+    #[Route('/mon-panier/remove/{id<\d+>}', name: 'app_panier_remove')]
+    public function removeToCart(PanierService $panierService, int $id): Response
     {
-        $cartService->removeToCart($id);
-        return $this->redirectToRoute('app_cart');
+        $panierService->retireDuPanier($id);
+        return $this->redirectToRoute('app_panier');
     }
 
-    #[Route('/mon-panier/decrease/{id<\d+>}', name: 'app_cart_decrease')]
-
-    public function decrease(CartService $cartService, int $id): RedirectResponse
+    #[Route('/mon-panier/decrease/{id<\d+>}', name: 'app_panier_decrease')]
+    public function decrease(PanierService $panierService, int $id): RedirectResponse
     {
-        $cartService->decrease($id);
-        return $this->redirectToRoute('app_cart');
+        $panierService->reduire($id);
+        return $this->redirectToRoute('app_panier');
     }
 
     #[Route('/mon-panier/removeAll', name: 'app_cart_removeAll')]
-    public function removeAll(CartService $carteService): Response
+    public function removeAll(PanierService $panierService): Response
     {
-        $carteService->removeCartAll();
-        return $this->redirectToRoute('app_cart');
+        $panierService->supprimerToutPanier();
+        return $this->redirectToRoute('app_panier');
     }
 }

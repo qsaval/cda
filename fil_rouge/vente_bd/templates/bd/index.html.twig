@@ -19,7 +19,7 @@
             {% if bd.stock == 0 %}
             <p>cette bd n'est plus en stock</p>
             {% else %}
-            <a href="{{ path('app_cart_add', {'id': bd.id}) }}" class="btn btn-lg btn-primary">Panier</a>
+            <a href="{{ path('app_panier_add', {'id': bd.id}) }}" class="btn btn-lg btn-primary">Panier</a>
             {% endif %}
             
         </div>

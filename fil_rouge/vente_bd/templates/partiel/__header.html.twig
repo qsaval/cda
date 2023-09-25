@@ -4,19 +4,22 @@
 
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
     <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse ms-3 row" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 col-lg-5">
                 <li class="nav-item mx-lg-2">
-                    <a class="nav-link active link-body-emphasis" aria-current="page" href="{{ path('app_home') }}">Acceuil</a>
+                    <a class="nav-link active link-body-emphasis" aria-current="page"
+                        href="{{ path('app_home') }}">Acceuil</a>
                 </li>
                 <li class="nav-item mx-lg-2">
                     <a class="nav-link active link-body-emphasis" aria-current="page" href="#">BD</a>
                 </li>
                 <li class="nav-item dropdown mx-lg-2">
-                    <a class="nav-link link-body-emphasis" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link link-body-emphasis" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
                         Comic
                     </a>
                     <ul class="dropdown-menu bg-primary">
@@ -25,7 +28,8 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown mx-lg-2">
-                    <a class="nav-link link-body-emphasis" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link link-body-emphasis" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
                         Manga
                     </a>
                     <ul class="dropdown-menu bg-primary">
@@ -34,34 +38,36 @@
                     </ul>
                 </li>
             </ul>
-            <ul class="navbar-nav me-auto col-lg-7 d-flex justify-content-end">
-				{% if app.user %}
-					<li class="nav-item mt-2">
-                        <a class="nav-link active" href="{{ path('app_logout') }}">Déconnexion</a>
-					</li>
-                    <li class="nav-item dropdown mt-2">
-                        <a class="nav-link link-body-emphasis" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class='bx bxs-user fs-4'></i>
-                        </a>
-                        <ul class="dropdown-menu bg-primary">
-                            <li><a class="dropdown-item" href="#">Profil</a></li>
-                            <li><a class="dropdown-item" href="#">Changer le mot de passe</a></li>
-                        </ul>
-                    </li>
-				{% else %}
-					<li class="nav-item mt-1">
-						<a class="nav-link active" href="{{ path('app_login') }}">Connexion</a>
-					</li>
-					<li class="nav-item mt-1">
-						<a class="nav-link active" href="{{ path('app_register') }}">Inscription</a>
-					</li>
-				{% endif %}
+            <ul class="navbar-nav me-auto col-lg-5 d-flex justify-content-end">
+                {% if app.user %}
+                <li class="nav-item dropdown mt-2">
+                    <a class="nav-link link-body-emphasis" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class='bx bxs-user fs-4'></i>
+                    </a>
+                    <ul class="dropdown-menu bg-primary me-5">
+                        <li><a class="dropdown-item" href="{{ path('app_profile', {id: app.user.id}) }}">Profil</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_password', {id: app.user.id}) }}">Changer le mot de passe</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a></li>
+                    </ul>
+                </li>
+                {% else %}
+                <li class="nav-item dropdown mt-2">
+                    <a class="nav-link link-body-emphasis" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class='bx bx-user-circle fs-4'></i>
+                    </a>
+                    <ul class="dropdown-menu bg-primary me-5">
+                        <li><a class="dropdown-item" href="{{ path('app_login') }}">Connexion</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_register') }}">Inscription</a></li>
+                    </ul>
+                </li>
+                {% endif %}
                 <li class="nav-item mt-1">
-                    <a href="{{ path('app_cart') }}" class="nav-link active ">
+                    <a href="{{ path('app_panier') }}" class="nav-link active ">
                         <i class='bx bxs-cart fs-4'></i>
                     </a>
                 </li>
-			</ul>
+            </ul>
         </div>
     </div>
 </nav>

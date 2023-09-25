@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class CartService {
+class PanierService {
 
     private RequestStack $requestStack;
 
@@ -19,57 +19,57 @@ class CartService {
         $this->em = $em;
     }
 
-    public function addToCart(int $id): void
+    public function ajouterAuPanier(int $id): void
     {
-        $cart = $this->getSession()->get('cart', []);
-        if (!empty($cart[$id])) {
-            $cart[$id]++;
+        $panier = $this->getSession()->get('panier', []);
+        if (!empty($panier[$id])) {
+            $panier[$id]++;
         } else {
-            $cart[$id] = 1;
+            $panier[$id] = 1;
         }
-        $this->getSession()->set('cart', $cart);
+        $this->getSession()->set('panier', $panier);
     }
 
-    public function removeToCart(int $id)
+    public function retireDuPanier(int $id)
     {
-        $cart = $this->requestStack->getSession()->get('cart', []);
-        unset($cart[$id]);
-        return $this->getSession()->set('cart', $cart);
+        $panier = $this->requestStack->getSession()->get('panier', []);
+        unset($panier[$id]);
+        return $this->getSession()->set('panier', $panier);
     }
 
-    public function decrease(int $id)
+    public function reduire(int $id)
     {
-        $cart = $this->getSession()->get('cart', []);
-        if ($cart[$id] > 1) {
-            $cart[$id]--;
+        $panier = $this->getSession()->get('panier', []);
+        if ($panier[$id] > 1) {
+            $panier[$id]--;
         } else {
-            unset($cart[$id]);
+            unset($panier[$id]);
         }
-        $this->getSession()->set('cart', $cart);
+        $this->getSession()->set('panier', $panier);
     }
 
-    public function removeCartAll()
+    public function supprimerToutPanier()
     {
-        return $this->getSession()->remove('cart');
+        return $this->getSession()->remove('panier');
     }
 
     public function getTotal(): array
     {
-        $cart = $this->getSession()->get('cart');
-        $cartData = [];
-        if ($cart) {
-            foreach ($cart as $id => $quantite) {
+        $panier = $this->getSession()->get('panier');
+        $panierData = [];
+        if ($panier) {
+            foreach ($panier as $id => $quantite) {
                 $bd = $this->em->getRepository(Bd::class)->findOneBy(['id' => $id]);
                 if (!$bd) {
                     // Supprimer le produit puis continuer en sortant de la boucle
                 }
-                $cartData[] = [
+                $panierData[] = [
                     'bd' => $bd,
                     'quantite' => $quantite
                 ];
             }
         }
-        return $cartData;
+        return $panierData;
     }
 
     private function getSession(): SessionInterface

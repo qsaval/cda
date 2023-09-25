@@ -3,44 +3,61 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+{% for flash_error in app.flashes('verify_email_error') %}
+<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+{% endfor %}
 
-    <h1>Inscription</h1>
+<div class="row d-flex justify-content-center mt-5">
+    <div class="col-6 bg-primary-subtle">
+        <div class="d-flex justify-content-center w-100">
+            {{ form_errors(registrationForm) }}
+            <div>
+                <h1 class="h3 mt-5 font-weight-normal fs-2">Inscription</h1>
 
-    {{ form_errors(registrationForm) }}
+                {{ form_start(registrationForm) }}
+                <div class="w-100 mt-3">
+                    {{ form_row(registrationForm.nomUser, {
+                    label: 'Nom'
+                    }) }}
+                </div>
+                <div class="w-100 mt-3">
+                    {{ form_row(registrationForm.prenomUser, {
+                    label: 'Prenom'
+                    }) }}
+                </div>
+                <div class="w-100 mt-3">
+                    {{ form_row(registrationForm.type) }}
+                </div>
+                <div class="w-100 mt-3">
+                    {{ form_row(registrationForm.email) }}
+                </div>     
+                <div class="w-100 mt-3">
+                    {{ form_row(registrationForm.adresseFacturation, {
+                    label: 'Adresse'
+                    }) }}
+                </div>
+                <div class="w-100 mt-3">
+                    {{ form_row(registrationForm.villeFacturation, {
+                    label: 'Ville'
+                    }) }}
+                </div>
+                <div class="w-100 mt-3">
+                    {{ form_row(registrationForm.cpFacturation) }}
+                </div>
+                <div class="w-100 mt-3">
+                    {{ form_row(registrationForm.plainPassword, {
+                    label: 'Password'
+                    }) }}
+                </div>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.nomUser, {
-            label: 'Nom'
-        }) }}
+                <div class="d-flex mt-5">
+                    <button type="submit" class="btn btn-primary">Enregistre</button>
+                    <a href="{{ path('app_login') }}" class="btn btn-primary ms-4">déjà un compte</a>
+                </div>
+            </div>
 
-        {{ form_row(registrationForm.prenomUser, {
-            label: 'Prenom'
-        }) }}
-
-        {{ form_row(registrationForm.type) }}
-
-        {{ form_row(registrationForm.email) }}
-
-        {{ form_row(registrationForm.adresseFacturation, {
-            label: 'Adresse'
-        }) }}
-
-        {{ form_row(registrationForm.villeFacturation, {
-            label: 'Ville'
-        }) }}
-
-        {{ form_row(registrationForm.cpFacturation) }}
-
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-
-        <div class="d-flex mt-2">
-            <button type="submit" class="btn btn-lg btn-primary">Enregistre</button>
-            <a href="{{ path('app_login') }}" class="btn btn-lg btn-primary ms-4">déjà un compte</a>
+            {{ form_end(registrationForm) }}
         </div>
-    {{ form_end(registrationForm) }}
+    </div>
+</div>
 {% endblock %}
