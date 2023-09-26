@@ -37,16 +37,16 @@ class Bd
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
     private ?string $prix = null;
 
-    #[ORM\ManyToOne(inversedBy: 'idBd')]
+    #[ORM\ManyToOne(inversedBy: 'bd')]
     private ?Categorie $categorie = null;
 
-    #[ORM\ManyToOne(inversedBy: 'idBd')]
+    #[ORM\ManyToOne(inversedBy: 'bd')]
     private ?Fournisseur $fournisseur = null;
 
-    #[ORM\OneToMany(mappedBy: 'idBd', targetEntity: DetailCommande::class)]
+    #[ORM\OneToMany(mappedBy: 'bd', targetEntity: DetailCommande::class)]
     private Collection $detailCommandes;
 
-    #[ORM\OneToMany(mappedBy: 'idBd', targetEntity: DetailLivraison::class)]
+    #[ORM\OneToMany(mappedBy: 'bd', targetEntity: DetailLivraison::class)]
     private Collection $detailLivraisons;
 
     #[ORM\Column]

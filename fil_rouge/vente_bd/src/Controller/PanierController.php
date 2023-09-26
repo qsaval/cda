@@ -41,6 +41,7 @@ class PanierController extends AbstractController
                 ->setNbCommander($quantite);
             $em->persist($detail);
 
+            $bd->setStock($bd->getStock() - $quantite);
             
             $commande->addDetailCommande($detail);
 

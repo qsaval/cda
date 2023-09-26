@@ -23,9 +23,9 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/profile/modification/{id}', name: 'app_profile_modif')]
-    public function modif(User $choosenUser, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher): Response
+    public function modif(User $user, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher): Response
     {
-        $form = $this->createForm(UserType::class, $choosenUser);
+        $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -42,28 +42,28 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/motdepasse/{id}', name: 'app_password')]
-    public function motDePasse(User $choosenUser, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher): Response
+    public function motDePasse(User $user, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher): Response
     {
         $form = $this->createForm(UserPasswordType::class);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            if ($hasher->isPasswordValid($choosenUser,$form->getData()->getPlainPassword())) {
-                $choosenUser->setPlainPassword(
+            if ($hasher->isPasswordValid($user,$form->getData()->getPlainPassword())) {
+                $user->setPlainPassword(
                     $form->getData()->getNewPassword()
                 );
 
-                $choosenUser->setPassword(
+                $user->setPassword(
                     $hasher->hashPassword(
-                        $choosenUser,
-                        $choosenUser->getPlainPassword()
+                        $user,
+                        $user->getPlainPassword()
                     )
                 );
 
-                $choosenUser->setPlainPassword(null);
+                $user->setPlainPassword(null);
 
-                $manager->persist($choosenUser);
+                $manager->persist($user);
                 $manager->flush();
 
 
