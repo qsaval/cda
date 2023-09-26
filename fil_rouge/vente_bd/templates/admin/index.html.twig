@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Adminitration{% endblock %}
+
+{% block body %}
+    <h1>Adminitration</h1>
+
+    <div class="container d-flex justify-content-center ">
+        <a class="btn btn-lg btn-primary me-5" href="#">commande</a>
+        <a class="btn btn-lg btn-primary" href="{{ path('app_admin_bd') }}">BD</a>
+    </div>
+{% endblock %}

@@ -7,7 +7,7 @@
     <div id="carouselExample" class="carousel slide mt-2" data-bs-ride="carousel" >
         <div class="carousel-inner">
             {% for bd in bds %}
-            <div class="carousel-item active" data-bs-interval="2750">
+            <div class="carousel-item {% if bd.id == 1 %} active {% endif %}" data-bs-interval="2750">
                 <div class="d-lg-flex">
                     <img class="d-block" src="{{ bd.imageBd }}" alt="{{ bd.titre }}" width="500">
                     <div class="bg-primary-subtle w-100 row mx-1">

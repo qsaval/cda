@@ -2,13 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\BdRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use App\Repository\BdRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 #[ORM\Entity(repositoryClass: BdRepository::class)]
+#[Vich\Uploadable]
 class Bd
 {
     #[ORM\Id]
@@ -21,6 +25,9 @@ class Bd
 
     #[ORM\Column(length: 255)]
     private ?string $imageBd = null;
+
+    #[Vich\UploadableField(mapping: 'bd', fileNameProperty: 'imageBd')]
+    private ?File $imageFile = null;
 
     #[ORM\Column(length: 255)]
     private ?string $auteur = null;
@@ -239,6 +246,18 @@ class Bd
     public function setStock(int $stock): static
     {
         $this->stock = $stock;
+
+        return $this;
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile($imageFile)
+    {
+        $this->imageFile = $imageFile;
 
         return $this;
     }

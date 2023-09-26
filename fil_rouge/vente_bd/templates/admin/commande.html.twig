@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Adminitration{% endblock %}
+
+{% block body %}
+<h1>Adminitration</h1>
+
+<div class="container d-flex justify-content-center ">
+    <a class="btn btn-lg btn-primary me-5" href="#">commande</a>
+    <a class="btn btn-lg btn-primary" href="{{ path('app_admin_bd') }}">BD</a>
+</div>
+
+<div class="container d-flex justify-content-center mt-5">
+    <a class="btn btn-primary" href="">ajout BD</a>
+</div>
+
+<table class="table mt-5">
+    <thead>
+        <tr>
+            <th scope="col">Date de commande</th>
+            <th scope="col">Client</th>
+            <th scope="col">Etat de la commande</th>
+            <th scope="col">Montant</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for commande in commandes %}
+        <tr>
+            <th scope="row">{{ commande.dateCommande|date('d/m/Y') }}</th>
+            <td>{{ commande.user.nomUser }} {{ commande.user.prenomUser }}</td>
+            <td>
+                {% if commande.etatCommande == 0 %}
+                    Validée
+                {% else %}
+                    {% if commande.etatCommande == 1 %}
+                        En préparation
+                    {% else %}
+                        {% if commande.etatCommande == 2 %}
+                            En cours de livraison
+                        {% else %}
+                            {% if commande.etatCommande == 3 %}
+                                Livrée
+                            {% else %}
+                                Annulée
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            </td>
+            <td>{{ commande.montantCommande }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="navigation d-flex justify-content-center mt-4">
+    {{ knp_pagination_render(commandes) }}
+</div>
+{% endblock %}

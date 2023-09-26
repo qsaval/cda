@@ -27,10 +27,12 @@ class CategorieRepository extends ServiceEntityRepository
    public function findByExampleField(): array
    {
        return $this->createQueryBuilder('c')
-           ->orderBy('c.categorie','ASC')
-           ->setMaxResults(3)
-           ->getQuery()
-           ->getResult()
+            ->select('m.id, m.nomCategorie, m.imageCategorie')
+            ->join('c.categorie', 'm')
+            ->groupBy('m.id')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()
        ;
    }
 
