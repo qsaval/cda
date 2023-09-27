@@ -19,6 +19,7 @@ class ProfileController extends AbstractController
     {
         return $this->render('profile/index.html.twig', [
             'user' => $user,
+            'routes' => '/profile/' . $user->getId()
         ]);
     }
 
@@ -38,6 +39,7 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/modification.html.twig', [
             'form' => $form->createView(),
+            'routes' => '/profile/modification/' . $user->getId()
         ]);
     }
 
@@ -72,7 +74,8 @@ class ProfileController extends AbstractController
         }
 
         return $this->render('profile/password.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'routes' => '/motdepasse/' . $user->getId()
         ]);
     }
 

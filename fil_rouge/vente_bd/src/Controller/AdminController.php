@@ -32,6 +32,7 @@ class AdminController extends AbstractController
 
         return $this->render('admin/bd.html.twig', [
             'bds' => $bd,
+            'routes' => '/admin/BD'
         ]);
     }
 
@@ -52,7 +53,8 @@ class AdminController extends AbstractController
         };
 
         return $this->render('admin/ajout_bd.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'routes' => '/admin/BD/ajout'
         ]);
     }
 
@@ -76,6 +78,7 @@ class AdminController extends AbstractController
 
         return $this->render('admin/commande.html.twig', [
             'commandes' => $commande,
+            'routes' => '/admin/commande'
         ]);
     }
 }
