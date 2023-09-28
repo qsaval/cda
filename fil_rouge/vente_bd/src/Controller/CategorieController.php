@@ -58,7 +58,8 @@ class CategorieController extends AbstractController
 
         return $this->render('categorie/bd.html.twig', [
             'bds' => $bds,
-            'cat' => $categorie
+            'cat' => $categorie,
+            'routes' => '/categorie/bd/' . $categorie->getId()
         ]);
     }
 }

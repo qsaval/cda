@@ -14,43 +14,51 @@
             <div>
                 <h1 class="h3 mt-5 font-weight-normal fs-2">Inscription</h1>
 
-                {{ form_start(registrationForm) }}
+                {{ form_start(registrationForm, {attr:{id: 'registration'}}) }}
                 <div class="w-100 mt-3">
                     {{ form_row(registrationForm.nomUser, {
                     label: 'Nom'
                     }) }}
+                    <span id="erreurNom" class="text-danger"></span>
                 </div>
                 <div class="w-100 mt-3">
                     {{ form_row(registrationForm.prenomUser, {
                     label: 'Prenom'
                     }) }}
+                    <span id="erreurPrenom" class="text-danger"></span>
                 </div>
                 <div class="w-100 mt-3">
                     {{ form_row(registrationForm.type) }}
+                    <span id="erreurType" class="text-danger"></span>
                 </div>
                 <div class="w-100 mt-3">
                     {{ form_row(registrationForm.email) }}
+                    <span id="erreurEmail" class="text-danger"></span>
                 </div>     
                 <div class="w-100 mt-3">
                     {{ form_row(registrationForm.adresseFacturation, {
                     label: 'Adresse'
                     }) }}
+                    <span id="erreurAdresse" class="text-danger"></span>
                 </div>
                 <div class="w-100 mt-3">
                     {{ form_row(registrationForm.villeFacturation, {
                     label: 'Ville'
                     }) }}
+                    <span id="erreurVille" class="text-danger"></span>
                 </div>
                 <div class="w-100 mt-3">
                     {{ form_row(registrationForm.cpFacturation) }}
+                    <span id="erreurCode" class="text-danger"></span>
                 </div>
                 <div class="w-100 mt-3">
                     {{ form_row(registrationForm.plainPassword, {
                     label: 'Password'
                     }) }}
+                    <span id="erreurPassword" class="text-danger"></span>
                 </div>
 
-                <div class="d-flex mt-5">
+                <div class="d-flex mt-5 mb-4">
                     <button type="submit" class="btn btn-primary">Enregistre</button>
                     <a href="{{ path('app_login') }}" class="btn btn-primary ms-4">déjà un compte</a>
                 </div>
