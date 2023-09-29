@@ -20,21 +20,9 @@ class PanierController extends AbstractController
     #[Route('/mon-panier', name: 'app_panier')]
     public function index(PanierService $panierService, CategorieRepository $categorieRepository, BdRepository $bdRepository, Request $request): Response
     {
-        $recherche = $request->request->get('search');
-        if($recherche != null){
-            if($categorieRepository->findOneBy(['nomCategorie' => $recherche])){ 
-                $categorie = $categorieRepository->findOneBy(['nomCategorie' => $recherche]);
-                return $this->redirectToRoute('app_categorie', ['id' => $categorie->getId()]);
-            }
 
-            if($bdRepository->findOneBy(['titre' => $recherche])){ 
-                $bd = $bdRepository->findOneBy(['titre' => $recherche]);
-                return $this->redirectToRoute('app_bd', ['id' => $bd->getId()]);
-            }
-        }
         return $this->render('panier/index.html.twig', [
             'panier' => $panierService->getTotal(),
-            'routes' => '/mon-panier'
         ]);
     }
 

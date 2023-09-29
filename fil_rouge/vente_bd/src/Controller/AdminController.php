@@ -18,9 +18,7 @@ class AdminController extends AbstractController
     #[Route('/admin', name: 'app_admin')]
     public function index(): Response
     {
-        return $this->render('admin/index.html.twig',[
-            'routes' => '/admin'
-        ]);
+        return $this->render('admin/index.html.twig');
     }
 
     #[Route('/admin/BD', name: 'app_admin_bd')]
@@ -33,8 +31,7 @@ class AdminController extends AbstractController
         );
 
         return $this->render('admin/bd.html.twig', [
-            'bds' => $bd,
-            'routes' => '/admin/BD'
+            'bds' => $bd
         ]);
     }
 
@@ -55,8 +52,7 @@ class AdminController extends AbstractController
         };
 
         return $this->render('admin/ajout_bd.html.twig', [
-            'form' => $form->createView(),
-            'routes' => '/admin/BD/ajout'
+            'form' => $form->createView()
         ]);
     }
 
@@ -79,8 +75,7 @@ class AdminController extends AbstractController
         );
 
         return $this->render('admin/commande.html.twig', [
-            'commandes' => $commande,
-            'routes' => '/admin/commande'
+            'commandes' => $commande
         ]);
     }
 }

@@ -16,22 +16,10 @@ class HomeController extends AbstractController
     {
         $cat = $categorieRepository->findByExampleField();
         $bd = $bdRepository->findByExampleField();
-        $recherche = $request->request->get('search');
-        if($recherche != null){
-            if($categorieRepository->findOneBy(['nomCategorie' => $recherche])){ 
-                $categorie = $categorieRepository->findOneBy(['nomCategorie' => $recherche]);
-                return $this->redirectToRoute('app_categorie', ['id' => $categorie->getId()]);
-            }
-
-            if($bdRepository->findOneBy(['titre' => $recherche])){ 
-                $bd = $bdRepository->findOneBy(['titre' => $recherche]);
-                return $this->redirectToRoute('app_bd', ['id' => $bd->getId()]);
-            }
-        }
+       
         return $this->render('home/index.html.twig',[
             'cats' => $cat,
             'bds' =>$bd,
-            'routes' => '/'
         ]);
     }
 }

@@ -35,6 +35,25 @@ class BdRepository extends ServiceEntityRepository
        ;
    }
 
+   public function findArticlesByName(string $query)
+    {
+        $qb = $this->createQueryBuilder('b');
+        $qb
+            ->where(
+                $qb->expr()->andX(
+                    $qb->expr()->orX(
+                        $qb->expr()->like('b.titre', ':query'),
+                        $qb->expr()->like('b.resume', ':query'),
+                    )
+                )
+            )
+            ->setParameter('query', '%' . $query . '%')
+        ;
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
+
 //    public function findOneBySomeField($value): ?Bd
 //    {
 //        return $this->createQueryBuilder('b')
