@@ -35,7 +35,7 @@ class BdRepository extends ServiceEntityRepository
        ;
    }
 
-   public function findArticlesByName(string $query)
+   public function findBdByName(string $query)
     {
         $qb = $this->createQueryBuilder('b');
         $qb

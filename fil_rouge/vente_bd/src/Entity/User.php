@@ -124,7 +124,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getPassword(): string
     {
-        return $this->password;
+       return $this->password;
     }
 
     public function setPassword(string $password): static
@@ -293,19 +293,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * Get the value of plainPassword
-     */ 
     public function getPlainPassword()
     {
         return $this->plainPassword;
     }
 
-    /**
-     * Set the value of plainPassword
-     *
-     * @return  self
-     */ 
     public function setPlainPassword($plainPassword)
     {
         $this->plainPassword = $plainPassword;
@@ -313,19 +305,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * Get the value of newPassword
-     */ 
     public function getNewPassword()
     {
         return $this->newPassword;
     }
 
-    /**
-     * Set the value of newPassword
-     *
-     * @return  self
-     */ 
     public function setNewPassword($newPassword)
     {
         $this->newPassword = $newPassword;

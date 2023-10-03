@@ -18,37 +18,21 @@ class UserPasswordType extends AbstractType
         ->add('plainPassword', RepeatedType::class, [
             'type' => PasswordType::class,
             'first_options' => [
-                'attr' => [
-                    'class' => 'form-control'
-                ], 
                 'label' => 'Mot de passe',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ]
             ],
             'second_options' => [
-                'attr' => [
-                    'class' => 'form-control'
-                ],
                 'label' => 'Comfirmation du mot de passe',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ] 
             ],
             'invalid_message' => 'Les mots de passe ne correspondent pas.',
             'required'   => false
         ])
         ->add('newPassword', PasswordType::class, [
-            'attr' => ['class' => 'form-control'],
             'label' => 'Nouvelle mot de passe',
-            'label_attr' => [
-                'class' => 'form-label mt-4'
-            ],
             'required'   => false
         ])
         ->add('submit', SubmitType::class, [
             'attr' => [
-                'class' => 'btn btn-primary mt-4'
+                'class' => 'btn btn-primary'
             ],
             'label' => 'Changer mon mot de passe'    
         ]);

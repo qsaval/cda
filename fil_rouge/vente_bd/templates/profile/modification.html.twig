@@ -11,8 +11,63 @@
     <div class="col-6 bg-primary-subtle">
         <div class="d-flex justify-content-center w-100">
             <div>
-                <h1 class="mt-4">Formulaire de modification des information de l'utilisateur</h1>
-                {{ form(form) }}
+                <h1 class="mt-4">Informations de l'utilisateur</h1>
+                {{ form_start(form) }}
+                <div class="w-100 mt-3">
+                    {{ form_row(form.type, {
+                        label: 'Type'
+                    }) }}
+                </div>
+                <div class="w-100 mt-3">
+                    {{ form_row(form.nomUser, {
+                        label: 'Nom'
+                    }) }}
+                </div>
+                <div class="w-100 mt-3">
+                    {{ form_row(form.prenomUser, {
+                        label: 'Prenom'
+                    }) }}
+                </div>
+                <div class="w-100 mt-3">
+                    {{ form_row(form.email, {
+                        label: 'Email'
+                    }) }}
+                </div>
+                <div class="w-100 mt-3">
+                    {{ form_row(form.adresseFacturation, {
+                        label: 'Adresse facturation'
+                    }) }}
+                </div>
+                <div class="w-100 mt-3">
+                    {{ form_row(form.villeFacturation, {
+                        label: 'Ville facturation'
+                    }) }}
+                </div>
+                <div class="w-100 mt-3">
+                    {{ form_row(form.cpFacturation, {
+                        label: 'Code postal facturation'
+                    }) }}
+                </div>
+                <div class="w-100 mt-3">
+                    {{ form_row(form.adresseLivraison, {
+                        label: 'Adresse livraison'
+                    }) }}
+                </div>
+                <div class="w-100 mt-3">
+                    {{ form_row(form.villeLivraison, {
+                        label: 'Ville livraison'
+                    }) }}
+                </div>
+                <div class="w-100 mt-3">
+                    {{ form_row(form.cpLivraison, {
+                        label: 'Code postal livraison'
+                    }) }}
+                </div>
+                <div class="d-flex mt-5 mb-3">
+                    {{ form_row(form.modifier) }}
+                    <a href="{{ path('app_profile',{'id': user.id}) }}" class="btn btn-primary ms-4 mb-3">retour</a>
+                </div>
+                {{ form_end(form) }}
             </div>
         </div>
     </div>

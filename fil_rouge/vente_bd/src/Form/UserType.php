@@ -38,7 +38,7 @@ class UserType extends AbstractType
             ->add('villeFacturation', TextType::class,[
                 'required' => false,             
             ])
-            ->add('cpFacturation', NumberType::class, [
+            ->add('cpFacturation', TextType::class, [
                 'required' => false,                 
                 'label' => 'Code postal facturation'
             ])
@@ -52,7 +52,11 @@ class UserType extends AbstractType
             ->add('villeLivraison', TextType::class,[
                 'required' => false,             
             ])
-            ->add('modifier', SubmitType::class)
+            ->add('modifier', SubmitType::class,[
+                'attr' => [
+                    'class' => 'btn btn-primary'
+                ]
+            ])
         ;
     }
 

@@ -13,13 +13,15 @@
             <br>
             <p><b>Auteur :</b> {{ bd.auteur }}</p>
             <p><b>Editeur :</b> {{ bd.editeur }}</p>
-            <p><b>apparu le :</b> {{ bd.dateEdition|date('d/m/Y') }}</p>
+            <p><b>Apparu le :</b> {{ bd.dateEdition|date('d/m/Y') }}</p>
             <p><b>Prix :</b> {{ bd.prix }}€</p>
-            <br>
             {% if bd.stock == 0 %}
-            <p>cette bd n'est plus en stock</p>
+                <br>
+                <p class="fs-4"><b>Cette bd n'est plus en stock</b></p>
             {% else %}
-            <a href="{{ path('app_panier_add', {'id': bd.id}) }}" class="btn btn-lg btn-primary">Panier</a>
+                <p><b>Stock :</b> {{ bd.stock }}</p>
+                <br>
+                <a href="{{ path('app_panier_add', {'id': bd.id}) }}" class="btn btn-lg btn-primary">Panier</a>
             {% endif %}
             
         </div>

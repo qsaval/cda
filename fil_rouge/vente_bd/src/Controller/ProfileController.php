@@ -38,10 +38,11 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/modification.html.twig', [
             'form' => $form->createView(),
+            'user' => $user,
         ]);
     }
 
-    #[Route('/motdepasse/{id}', name: 'app_password')]
+    #[Route('/password/{id}', name: 'app_password')]
     public function motDePasse(User $user, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher): Response
     {
         $form = $this->createForm(UserPasswordType::class);

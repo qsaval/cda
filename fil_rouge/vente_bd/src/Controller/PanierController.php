@@ -27,7 +27,7 @@ class PanierController extends AbstractController
     }
 
     #[Route('/mon-panier/valide', name: 'app_panier_valide')]
-    public function valide(Request $request, BdRepository $repo, EntityManagerInterface $em, MailService $mailService): Response
+    public function valide(Request $request, BdRepository $repo, EntityManagerInterface $em, MailService $mailService, PanierService $panierService): Response
     {
         $session = $request->getSession();
         $panier = $session->get('panier', []);
@@ -40,7 +40,8 @@ class PanierController extends AbstractController
             
             $detail = new DetailCommande();
             $detail->setBd($bd)
-                ->setNbCommander($quantite);
+                ->setNbCommander($quantite)
+                ->setPrixCommander($bd->getPrix());
             $em->persist($detail);
 
             $bd->setStock($bd->getStock() - $quantite);
@@ -53,17 +54,23 @@ class PanierController extends AbstractController
         $commande->setMontantCommande($total)
             ->setEtatCommande(0)
             ->setDateCommande(new \DateTimeImmutable())
-            ->setUser($this->getUser());
+            ->setUser($this->getUser())
+            ->setFacture('dfsd')
+            ->setAdresseFacture($this->getUser()->getAdresseFacturation())
+            ->setCpFacture($this->getUser()->getCpFacturation())
+            ->setVilleFacture($this->getUser()->getVilleFacturation())
+            ->setNbColis(1);
         $em->persist($commande);
 
         $em->flush();
 
-        $mailService->sendValide(
-            'serviceClient@thedistrict.com',
-            'Commande validée',
-            'emails/valide.html.twig',
-            $this->getUser()->getEmail()
-        );
+//        $mailService->sendValide(
+//            'serviceClient@thedistrict.com',
+//            'Commande validée',
+//            'emails/valide.html.twig',
+//            $this->getUser()->getEmail()
+//        );
+        $panierService->supprimerToutPanier();
 
         return $this->redirectToRoute('app_home');
     }

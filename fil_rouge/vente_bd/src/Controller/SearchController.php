@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\BdRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,21 +12,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SearchController extends AbstractController
 {
     #[Route('/search', name: 'app_search')]
-    public function index(): Response
-    {
-        return $this->render('search/index.html.twig');
-    }
-
-    /**
-     * @param Request $request
-     */
-    #[Route('/handleSearch', name: 'handleSearch')]
-    public function handleSearch(Request $request, BdRepository $repo)
+    public function index(Request $request, BdRepository $repo, PaginatorInterface $paginator): Response
     {
         $query = $request->request->get('search');
+        $bd =null;
         if($query) {
-            $bd = $repo->findArticlesByName($query);
+            $bd = $repo->findBdByName($query);
         }
+
         return $this->render('search/index.html.twig', [
             'bds' => $bd
         ]);
