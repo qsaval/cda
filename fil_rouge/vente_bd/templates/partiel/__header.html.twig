@@ -45,13 +45,11 @@
                         <i class='bx bx-search' ></i>
                     </a>
                     <ul class="dropdown-menu bg-primary me-5">
-                        <li class="row w-50">
-                            <div class="col-2">
-                                <form action="{{ path('app_search') }}" method="post">
-                                    <input type="text" name="search" id="search" class="bg-primary-subtle mx-3"> 
-                                    <button class="btn btn-info m-3" type="submit">recherche</button>
-                                </form>
-                            </div>
+                        <li class="w-75">
+                            <form action="{{ path('app_search') }}" method="post">
+                                <input type="text" name="search" id="search" class="mx-3 form-control w-100">
+                                <button class="btn btn-info m-3" type="submit">recherche</button>
+                            </form>
                         </li>
                     </ul>
                 </li>

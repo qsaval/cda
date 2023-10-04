@@ -298,7 +298,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->plainPassword;
     }
 
-    public function setPlainPassword($plainPassword)
+    public function setPlainPassword(string $plainPassword)
     {
         $this->plainPassword = $plainPassword;
 
@@ -310,10 +310,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->newPassword;
     }
 
-    public function setNewPassword($newPassword)
+    public function setNewPassword(string $newPassword)
     {
-        $this->newPassword = $newPassword;
-
-        return $this;
+        $this->newPassword = $newPassword;        return $this;
     }
 }
