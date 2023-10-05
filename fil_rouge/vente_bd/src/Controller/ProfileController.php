@@ -62,7 +62,7 @@ class ProfileController extends AbstractController
                     )
                 );
 
-                $user->setPlainPassword(null);
+                $user>setPlainPassword(null);
 
                 $manager->persist($user);
                 $manager->flush();
@@ -74,6 +74,7 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/password.html.twig', [
             'form' => $form->createView(),
+            'user' => $user
         ]);
     }
 

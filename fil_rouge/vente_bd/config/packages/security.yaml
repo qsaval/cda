@@ -39,6 +39,7 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/profil, roles: ROLE_USER }
+        - { path: ^/password, roles: ROLE_USER }
         - { path: ^/mon-panier/valide, roles: ROLE_USER }
 
 when@test:

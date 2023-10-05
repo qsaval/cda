@@ -1,12 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfileController!{% endblock %}
+{% block title %}Profile utilisateur{% endblock %}
 
 {% block body %}
-{% for flash_error in app.flashes('verify_email_error') %}
-<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-{% endfor %}
-
+{% if app.user.id == user.id %}
 <div class="row d-flex justify-content-center mt-5">
     <div class="col-6 bg-primary-subtle">
         <div class="d-flex justify-content-center">
@@ -26,4 +23,13 @@
         </div>
     </div>
 </div>
+{% else %}
+    <div class="container d-flex flex-column justify-content-center min-vh-100">
+        <div class="text-center pt-4 mt-lg-2">
+            <h1 class="display-5 text-primary">404 Page introuvable</h1>
+            <a class="btn btn-primary" href="{{ path('app_home') }}">Acceuil</a>
+        </div>
+    </div>
+{% endif %}
 {% endblock %}
+
