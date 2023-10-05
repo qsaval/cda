@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Form\UserPasswordType;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,22 +16,24 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class ProfileController extends AbstractController
 {
     #[Route('/profile/{id}', name: 'app_profile')]
-    public function index(User $user): Response
+    #[Security('user === users')]
+    public function index(User $users): Response
     {
         return $this->render('profile/index.html.twig', [
-            'user' => $user,
+            'user' => $users,
         ]);
     }
 
     #[Route('/profile/modification/{id}', name: 'app_profile_modif')]
-    public function modif(User $user, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher): Response
+    #[Security('user === users')]
+    public function modif(User $users, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher): Response
     {
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $users);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $form->getData();
-            $manager->persist($user);
+            $users = $form->getData();
+            $manager->persist($users);
             $manager->flush();
 
             return $this->redirectToRoute('app_profile');
@@ -38,33 +41,34 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/modification.html.twig', [
             'form' => $form->createView(),
-            'user' => $user,
+            'user' => $users,
         ]);
     }
 
     #[Route('/password/{id}', name: 'app_password')]
-    public function motDePasse(User $user, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher): Response
+    #[Security('user === users')]
+    public function motDePasse(User $users, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher): Response
     {
         $form = $this->createForm(UserPasswordType::class);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            if ($hasher->isPasswordValid($user,$form->getData()->getPlainPassword())) {
-                $user->setPlainPassword(
+            if ($hasher->isPasswordValid($users,$form->getData()->getPlainPassword())) {
+                $users->setPlainPassword(
                     $form->getData()->getNewPassword()
                 );
 
-                $user->setPassword(
+                $users->setPassword(
                     $hasher->hashPassword(
-                        $user,
-                        $user->getPlainPassword()
+                        $users,
+                        $users->getPlainPassword()
                     )
                 );
 
-                $user>setPlainPassword(null);
+                $users->setPlainPassword(null);
 
-                $manager->persist($user);
+                $manager->persist($users);
                 $manager->flush();
 
 
@@ -74,7 +78,6 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/password.html.twig', [
             'form' => $form->createView(),
-            'user' => $user
         ]);
     }
 
