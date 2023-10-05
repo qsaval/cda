@@ -15,7 +15,10 @@
                 {{ form_start(form) }}
                 <div class="w-100 mt-3">
                     {{ form_row(form.type, {
-                        label: 'Type'
+                        label: 'Type',
+                        attr: {
+                            value: user.type
+                        }
                     }) }}
                 </div>
                 <div class="w-100 mt-3">

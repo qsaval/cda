@@ -101,7 +101,7 @@ document.getElementById('registration').addEventListener('submit', function(e){
 
     if(erreur1){
         e.preventDefault();
-        return true;
+        return false;
     }
     else{
         return true;

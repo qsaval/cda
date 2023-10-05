@@ -36,7 +36,7 @@ class ProfileController extends AbstractController
             $manager->persist($users);
             $manager->flush();
 
-            return $this->redirectToRoute('app_profile');
+            return $this->redirectToRoute('app_profile', ['id' => $users->getId()]);
         }
 
         return $this->render('profile/modification.html.twig', [
