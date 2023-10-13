@@ -42,7 +42,7 @@
                                 {% if bd.quantite < bd.bd.stock %}
                                     <a href="{{ path('app_panier_add', {id: bd.bd.id}) }}" class="btn btn-primary fs-xl">+</a>
                                 {% else %}
-                                    <button href="{{ path('app_panier_add', {id: bd.bd.id}) }}" class="btn btn-primary fs-xl">+</button>
+                                    <a href="{{ path('app_panier_add', {id: bd.bd.id}) }}" class="btn btn-primary fs-xl">+</a>
                                 {% endif %}  
                             </div>
                             <div class="nav d-flex justify-content-end col-xl-9 col-lg-8 col-sm-7 col-5">
@@ -56,7 +56,7 @@
                         <li class="d-flex justify-content-between mb-2">Nombre de BD:<span class="fw-semibold ms-2">{{ quantite }}</span></li>
                     </ul>
                     <div class="d-flex align-items-center justify-content-between border-top fs-xl pt-4">Total:<span class="fs-3 fw-semibold text-dark ms-2">{{ total|number_format(2,',','.') }}€</span></div>
-                    <a href="{{ path('app_panier_valide') }}" class="btn btn-lg btn-primary w-100 w-sm-auto mt-4">Valider mon panier</a>
+                    <a href="{{ path('app_livraison') }}" class="btn btn-lg btn-primary w-100 w-sm-auto mt-4">Valider mon panier</a>
                 </div>
             </div>
         </div>

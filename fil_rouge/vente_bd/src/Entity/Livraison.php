@@ -19,20 +19,17 @@ class Livraison
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateLivraison = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $nomTransporteur = null;
-
     #[ORM\Column]
     private ?bool $retardEventuel = null;
-
-    #[ORM\Column(length: 50)]
-    private ?string $telephoneTransporteur = null;
 
     #[ORM\OneToMany(mappedBy: 'livraison', targetEntity: Commande::class)]
     private Collection $commande;
 
     #[ORM\OneToMany(mappedBy: 'idLivraison', targetEntity: DetailLivraison::class)]
     private Collection $detailLivraisons;
+
+    #[ORM\ManyToOne(inversedBy: 'livraison')]
+    private ?Transporteur $transporteur = null;
 
     public function __construct()
     {
@@ -57,18 +54,6 @@ class Livraison
         return $this;
     }
 
-    public function getNomTransporteur(): ?string
-    {
-        return $this->nomTransporteur;
-    }
-
-    public function setNomTransporteur(string $nomTransporteur): static
-    {
-        $this->nomTransporteur = $nomTransporteur;
-
-        return $this;
-    }
-
     public function isRetardEventuel(): ?bool
     {
         return $this->retardEventuel;
@@ -77,18 +62,6 @@ class Livraison
     public function setRetardEventuel(bool $retardEventuel): static
     {
         $this->retardEventuel = $retardEventuel;
-
-        return $this;
-    }
-
-    public function getTelephoneTransporteur(): ?string
-    {
-        return $this->telephoneTransporteur;
-    }
-
-    public function setTelephoneTransporteur(string $telephoneTransporteur): static
-    {
-        $this->telephoneTransporteur = $telephoneTransporteur;
 
         return $this;
     }
@@ -149,6 +122,18 @@ class Livraison
                 $detailLivraison->setLivraison(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTransporteur(): ?Transporteur
+    {
+        return $this->transporteur;
+    }
+
+    public function setTransporteur(?Transporteur $transporteur): static
+    {
+        $this->transporteur = $transporteur;
 
         return $this;
     }
