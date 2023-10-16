@@ -42,6 +42,7 @@ security:
         - { path: ^/password, roles: ROLE_USER }
         - { path: ^/mon-panier/valide, roles: ROLE_USER }
         - { path: ^/livraison, roles: ROLE_USER }
+        - { path: ^/paiement, roles: ROLE_USER }
 
 when@test:
     security:

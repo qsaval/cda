@@ -16,13 +16,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class PaiementController extends AbstractController
 {
     #[Route('/paiement/{frais}', name: 'app_paiement')]
-    public function index(double $frais, Request $request, BdRepository $repo, EntityManagerInterface $em, MailService $mailService, PanierService $panierService): Response
+    public function index(float $frais, Request $request, BdRepository $repo, EntityManagerInterface $em, MailService $mailService, PanierService $panierService): Response
     {
         $session = $request->getSession();
         $panier = $session->get('panier', []);
+        $total = 0;
+        foreach ($panier as $id => $quantite)
+        {
+            $bd = $repo->find($id);
+            $total = $total + ($bd->getPrix() * $quantite);
+        }
+
+        $total = $total + $frais;
+        
+
         if($request->request->get('numcart') && $request->request->get('nompro') && $request->request->get('datevalid') && $request->request->get('numsecret')){
             $commande = new Commande();
-            $total = 0;
+
             foreach($panier as $id => $quantite)
             {
                 $bd = $repo->find($id);
@@ -36,9 +46,6 @@ class PaiementController extends AbstractController
                 $bd->setStock($bd->getStock() - $quantite);
 
                 $commande->addDetailCommande($detail);
-
-                $total = $total + ($bd->getPrix() * $quantite);
-                $total = $total + $frais;
             }
 
             $commande->setMontantCommande($total)
@@ -66,7 +73,8 @@ class PaiementController extends AbstractController
 
 
         return $this->render('paiement/index.html.twig', [
-            'frais' => $frais
+            'frais' => $frais,
+            'total' => $total
         ]);
     }
 }
