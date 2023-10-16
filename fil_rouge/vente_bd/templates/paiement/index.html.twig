@@ -6,7 +6,7 @@
     <div class="row d-flex justify-content-center mt-5">
         <div class="col-6 bg-primary-subtle">
             <div class="d-flex justify-content-center w-100">
-                <form class="my-5" action="{{ path('app_paiement') }}">
+                <form class="my-5" action="{{ path('app_paiement', {'frais': frais}) }}" method="post">
                     <div class="d-flex">
                         <h1 class="mb-3 me-3">Paiement</h1>
                         <div>

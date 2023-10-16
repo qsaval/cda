@@ -19,23 +19,23 @@ class LivraisonController extends AbstractController
         if ($request->request->get('11')){
             $frais = $transporteur[0]->getFraisLivraison();
             dd($frais);
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_paiement', ['frais' => $frais]);
 
         }
         if ($request->request->get('12')){
             $frais = $transporteur[0]->getFraisLivraisonRapide();
             dd($frais);
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_paiement', ['frais' => $frais]);
         }
         if ($request->request->get('21')){
             $frais = $transporteur[1]->getFraisLivraison();
             dd($frais);
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_paiement', ['frais' => $frais]);
         }
         if ($request->request->get('22')){
             $frais = $transporteur[1]->getFraisLivraisonRapide();
             dd($frais);
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_paiement', ['frais' => $frais]);
         }
 
 

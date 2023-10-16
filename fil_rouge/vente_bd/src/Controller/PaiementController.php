@@ -15,14 +15,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PaiementController extends AbstractController
 {
-    #[Route('/paiement', name: 'app_paiement')]
-    public function index( Request $request, BdRepository $repo, EntityManagerInterface $em, MailService $mailService, PanierService $panierService): Response
+    #[Route('/paiement/{frais}', name: 'app_paiement')]
+    public function index(double $frais, Request $request, BdRepository $repo, EntityManagerInterface $em, MailService $mailService, PanierService $panierService): Response
     {
         $session = $request->getSession();
         $panier = $session->get('panier', []);
-        dd($request);
         if($request->request->get('numcart') && $request->request->get('nompro') && $request->request->get('datevalid') && $request->request->get('numsecret')){
-            dd($request->request->get('nompro'));
             $commande = new Commande();
             $total = 0;
             foreach($panier as $id => $quantite)
@@ -40,6 +38,7 @@ class PaiementController extends AbstractController
                 $commande->addDetailCommande($detail);
 
                 $total = $total + ($bd->getPrix() * $quantite);
+                $total = $total + $frais;
             }
 
             $commande->setMontantCommande($total)
@@ -67,7 +66,7 @@ class PaiementController extends AbstractController
 
 
         return $this->render('paiement/index.html.twig', [
-
+            'frais' => $frais
         ]);
     }
 }
