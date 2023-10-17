@@ -10,7 +10,7 @@ const Exercice2 = () => {
 
     return (
         <>
-            <h1>exercice2 : Compteur</h1>
+            <h1>Exercice2 : Compteur</h1>
             <button onClick={handleClick}>Compteur = {count}</button>
         </>
     );

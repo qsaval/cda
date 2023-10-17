@@ -27,7 +27,8 @@ class BdRepository extends ServiceEntityRepository
    public function findByExampleField(): array
    {
        return $this->createQueryBuilder('b')
-           ->groupBy('b.categorie')
+           ->join('b.categorie', 'c')
+           ->groupBy('c.categorie')
            ->orderBy('b.id', 'ASC')
            ->setMaxResults(3)
            ->getQuery()
