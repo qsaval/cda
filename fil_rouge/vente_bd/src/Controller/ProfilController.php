@@ -13,18 +13,18 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class ProfileController extends AbstractController
+class ProfilController extends AbstractController
 {
-    #[Route('/profile/{id}', name: 'app_profile')]
+    #[Route('/profil/{id}', name: 'app_profile')]
     #[Security('user === users')]
     public function index(User $users): Response
     {
-        return $this->render('profile/index.html.twig', [
+        return $this->render('profil/index.html.twig', [
             'user' => $users,
         ]);
     }
 
-    #[Route('/profile/modification/{id}', name: 'app_profile_modif')]
+    #[Route('/profil/modification/{id}', name: 'app_profil_modif')]
     #[Security('user === users')]
     public function modif(User $users, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher): Response
     {
@@ -39,7 +39,7 @@ class ProfileController extends AbstractController
             return $this->redirectToRoute('app_profile', ['id' => $users->getId()]);
         }
 
-        return $this->render('profile/modification.html.twig', [
+        return $this->render('profil/modification.html.twig', [
             'form' => $form->createView(),
             'user' => $users,
         ]);
@@ -76,7 +76,7 @@ class ProfileController extends AbstractController
             }
         }
 
-        return $this->render('profile/password.html.twig', [
+        return $this->render('profil/password.html.twig', [
             'form' => $form->createView(),
         ]);
     }

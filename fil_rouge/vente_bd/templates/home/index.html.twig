@@ -9,7 +9,7 @@
             {% for bd in bds %}
             <div class="carousel-item {% if bd.id == 1 %} active {% endif %}" data-bs-interval="2750">
                 <div class="d-lg-flex">
-                    <img class="d-block" src="{{ bd.imageBd }}" alt="{{ bd.titre }}" width="500">
+                    <img class="d-block" src="image/{{ bd.imageBd }}" alt="{{ bd.titre }}" style="width: 25rem; height: 30rem;">
                     <div class="bg-primary-subtle w-100 row mx-1">
                         <div class="col-lg-6 ms-lg-5 mt-4">
                             <h2 class="fs-3">{{ bd.titre }}</h2>
@@ -32,12 +32,19 @@
     </div>
 </div>
 <div class="row">
+    <div class="col-lg-4 mb-3 d-flex justify-content-center">
+        <div class="card " style="width: 18rem;">
+            <img src="/image/{{ catsimple.imageCategorie }}" class="card-img-top" alt="{{ catsimple.imageCategorie }}"  style="width: 15rem; height: 15rem;">
+            <div class="card-body">
+                <a href="{{ path('app_list_bd', {'id': catsimple.id}) }}" class="btn btn-primary">Liste des BDs</a>
+            </div>
+        </div>
+    </div>
 {% for cat in cats %} 
 <div class="col-lg-4 mb-3 d-flex justify-content-center">
-    <div class="card " style="width: 18rem;">
-        <img src="{{ cat.imageCategorie }}" class="card-img-top" alt="{{ cat.imageCategorie }}">
+    <div class="card ">
+        <img src="/image/{{ cat.imageCategorie }}" class="card-img-top" alt="{{ cat.imageCategorie }}"  style="width: 15rem; height: 15rem;">
         <div class="card-body">
-            <h2 class="card-title">{{ cat.nomCategorie }}</h2>
             <a href="{{ path('app_categorie', {'id': cat.id}) }}" class="btn btn-primary">Liste des Categories</a>
         </div>
     </div>

@@ -13,6 +13,11 @@ footer {
     height: 100px;
 }
 
+image{
+    width: 25rem;
+    height: 30rem;
+}
+
 @media screen and (max-width: 992px) {
     .nbr{
         display: none;
