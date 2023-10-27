@@ -26,30 +26,31 @@
             <th scope="row">{{ commande.dateCommande|date('d/m/Y') }}</th>
             <td>{{ commande.user.nomUser }} {{ commande.user.prenomUser }}</td>
             <td>
-                {% if commande.etatCommande == 0 %}
-                    Validée
-                {% else %}
-                    {% if commande.etatCommande == 1 %}
-                        En préparation
+                <a href="{{ path('app_admin_commande_edit', {'id': commande.id}) }}" class="text-black link-offset-2 link-underline link-underline-opacity-0">
+                    {% if commande.etatCommande == 0 %}
+                        Validée
                     {% else %}
-                        {% if commande.etatCommande == 2 %}
-                            En cours de livraison
+                        {% if commande.etatCommande == 1 %}
+                            En préparation
                         {% else %}
-                            {% if commande.etatCommande == 3 %}
-                                Livrée
+                            {% if commande.etatCommande == 2 %}
+                                En cours de livraison
                             {% else %}
-                                Annulée
+                                {% if commande.etatCommande == 3 %}
+                                    Livrée
+                                {% else %}
+                                    Annulée
+                                {% endif %}
                             {% endif %}
                         {% endif %}
                     {% endif %}
-                {% endif %}
+                </a>
+
             </td>
             <td>{{ commande.montantCommande }}</td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
-<div class="navigation d-flex justify-content-center mt-4">
-    {{ knp_pagination_render(commandes) }}
-</div>
+
 {% endblock %}

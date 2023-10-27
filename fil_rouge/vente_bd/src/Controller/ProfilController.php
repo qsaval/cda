@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Commande;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Form\UserPasswordType;
+use App\Repository\CommandeRepository;
+use App\Repository\DetailCommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -81,4 +84,32 @@ class ProfilController extends AbstractController
         ]);
     }
 
+    #[Route('/commande/{id}', name: 'app_commande')]
+    #[Security('user === users')]
+    public function commande(User $users, CommandeRepository $commandeRepository): Response
+    {
+        $commande = $commandeRepository->findByDESC(['user' => $users->getId()]);
+        return $this->render('profil/commande.html.twig', [
+            'commandes' => $commande,
+        ]);
+    }
+    #[Route('/commande/{users}/{commande}', name: 'app_commande_detail')]
+    #[Security('user === users')]
+    public function commandeDetail(User $users, Commande $commande, DetailCommandeRepository $detailCommandeRepository): Response
+    {
+        $detail = $detailCommandeRepository->findBy(['commande' => $commande->getId()]);
+        return $this->render('profil/detail.html.twig', [
+            'details' => $detail,
+        ]);
+    }
+
+    #[Route('/commande/annulee/{users}/{commande}', name: 'app_commande_annulee')]
+    #[Security('user === users')]
+    public function annuler(User $users, Commande $commande, EntityManagerInterface $em): Response
+    {
+        $commande->setEtatCommande(4);
+        $em->persist($commande);
+        $em->flush();
+        return $this->redirectToRoute('app_commande', ['id' => $users->getId()]);
+    }
 }

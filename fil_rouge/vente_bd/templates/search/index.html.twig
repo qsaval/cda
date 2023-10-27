@@ -14,7 +14,7 @@
                    {% for bd in bds %}
                        <div class="col-lg-4 mb-3 d-flex justify-content-center">
                            <div class="card " style="width: 18rem;">
-                               <img src="/image/{{ bd.imageBd }}" class="card-img-top" alt="{{ bd.imageBd }}">
+                               <img src="{{ asset('/image/') }}{{ bd.imageBd }} " class="card-img-top" alt="{{ bd.imageBd }}">
                                <div class="card-body">
                                    <h2 class="card-title">{{ bd.titre }}</h2>
                                    <a href="{{ path('app_bd', {'id': bd.id}) }}" class="btn btn-primary">Detail</a>

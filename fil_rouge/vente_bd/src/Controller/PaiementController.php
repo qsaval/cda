@@ -27,8 +27,11 @@ class PaiementController extends AbstractController
             $total = $total + ($bd->getPrix() * $quantite);
         }
 
+        if ($this->getUser()->getType() == 'particulier'){
+            $total = $total * 1.2;
+        }
+
         $total = $total + $frais;
-        
 
         if($request->request->get('numcart') && $request->request->get('nompro') && $request->request->get('datevalid') && $request->request->get('numsecret')){
             $commande = new Commande();
@@ -52,7 +55,7 @@ class PaiementController extends AbstractController
                 ->setEtatCommande(0)
                 ->setDateCommande(new \DateTimeImmutable())
                 ->setUser($this->getUser())
-                ->setFacture('dfsd')
+                ->setFacture('Facture.pdf')
                 ->setAdresseFacture($this->getUser()->getAdresseFacturation())
                 ->setCpFacture($this->getUser()->getCpFacturation())
                 ->setVilleFacture($this->getUser()->getVilleFacturation())

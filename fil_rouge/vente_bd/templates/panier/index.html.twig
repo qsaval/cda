@@ -8,7 +8,10 @@
         <div class="container position-relative  pt-5 pb-lg-5 pb-md-4 pb-2">
             <div class="row">
                 <div class="col-lg-12  pt-1">
-                    <h2 class="fs-2 mb-3">Mon panier</h2>
+                    <div class="d-flex">
+                        <h2 class="fs-2 mb-3">Mon panier</h2>
+                        <p class="ms-5 my-2 fs-6 fw-lighter">une TVA a 20% sera rajout au total pour particulier</p>
+                    </div>
                     <a class="btn btn-outline-secondary mb-2" href="{{ path('app_cart_removeAll') }}">Suprimer tout mon panier</a>
                     {% set total = null %}
                     {% set quantite = 0 %}
@@ -18,9 +21,7 @@
                         <div class="d-sm-flex align-items-center border-top py-4">
                             <div class="w-100 pt-1 ps-sm-4">
                                 <div class="row">
-                                    <div class="card col-lg-3">
-                                        <img src="/image/{{ bd.bd.imageBd }}" class="card-img-top" alt="{{ bd.bd.titre }}">
-                                    </div>
+                                    <img src="/image/{{ bd.bd.imageBd }}" class="card-img-top col-lg-3" alt="{{ bd.bd.titre }}" style="width: 10rem; height: 12rem;">
                                     <div class="mx-5 align-self-center col-lg-1">
                                         <h2 class="h5 mb-2 fs-3">{{ bd.bd.titre }}</h2>
                                     </div>

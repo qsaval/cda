@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Bd;
+use App\Entity\Commande;
 use App\Form\BdType;
 use App\Repository\BdRepository;
 use App\Repository\CommandeRepository;
@@ -66,7 +67,7 @@ class AdminController extends AbstractController
     }
 
     #[Route('/admin/commande', name: 'app_admin_commande')]
-    public function commande(CommandeRepository $commandeRepository, Request $request, PaginatorInterface $paginator): Response
+    public function commande(CommandeRepository $commandeRepository, Request $request, PaginatorInterface $paginator, EntityManagerInterface $manager): Response
     {
         $commande = $paginator->paginate(
             $commandeRepository->findByExampleField(),
@@ -77,5 +78,18 @@ class AdminController extends AbstractController
         return $this->render('admin/commande.html.twig', [
             'commandes' => $commande
         ]);
+    }
+
+    #[Route('/admin/commande/edition/{id}', name: 'app_admin_commande_edit')]
+    public function editCommande(Commande $commande, EntityManagerInterface $manager): Response
+    {
+        if($commande->getEtatCommande() < 3){
+            $commande->setEtatCommande($commande->getEtatCommande() + 1);
+        }
+
+        $manager->persist($commande);
+        $manager->flush();
+
+        return $this->redirectToRoute('app_admin_commande');
     }
 }

@@ -58,6 +58,7 @@
                         <i class='bx bxs-user fs-4'></i>
                     </a>
                     <ul class="dropdown-menu bg-primary me-5">
+                        <li><a class="dropdown-item" href="{{ path('app_commande', {id: app.user.id}) }}">Mes commande</a></li>
                         <li><a class="dropdown-item" href="{{ path('app_profile', {id: app.user.id}) }}">Profil</a></li>
                         <li><a class="dropdown-item" href="{{ path('app_password', {id: app.user.id}) }}">Changer le mot de passe</a></li>
                         {% if 'ROLE_ADMIN' in app.user.roles %}

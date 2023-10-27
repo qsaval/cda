@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ceef0218-d494-4ad8-b9a0-a89ee485f288" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/exemple1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/partielle1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/partielle2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../fil_rouge/vente_bd/templates/profil/commande.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../fil_rouge/vente_bd/templates/profil/detail.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fil_rouge/.$diagramme d'activiter.drawio.bkp" beforeDir="false" afterPath="$PROJECT_DIR$/../../fil_rouge/.$diagramme d'activiter.drawio.bkp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fil_rouge/.$diagramme sequence.drawio.dtmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fil_rouge/Cas d’utilisation détaillé.odt" beforeDir="false" afterPath="$PROJECT_DIR$/../../fil_rouge/Cas d’utilisation détaillé.odt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fil_rouge/base_ de_donnee.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../fil_rouge/base_ de_donnee.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fil_rouge/diagramme d'activiter.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/../../fil_rouge/diagramme d'activiter.drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fil_rouge/vente_bd/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../fil_rouge/vente_bd/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fil_rouge/vente_bd/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../fil_rouge/vente_bd/src/Controller/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fil_rouge/vente_bd/src/Controller/PaiementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../fil_rouge/vente_bd/src/Controller/PaiementController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fil_rouge/vente_bd/src/Controller/ProfilController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../fil_rouge/vente_bd/src/Controller/ProfilController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fil_rouge/vente_bd/src/Repository/CommandeRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../fil_rouge/vente_bd/src/Repository/CommandeRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fil_rouge/vente_bd/templates/admin/commande.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/../../fil_rouge/vente_bd/templates/admin/commande.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fil_rouge/vente_bd/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/../../fil_rouge/vente_bd/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fil_rouge/vente_bd/templates/panier/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/../../fil_rouge/vente_bd/templates/panier/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fil_rouge/vente_bd/templates/partiel/__header.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/../../fil_rouge/vente_bd/templates/partiel/__header.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fil_rouge/vente_bd/templates/search/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/../../fil_rouge/vente_bd/templates/search/index.html.twig" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2XAVfa9a6Pg0FWghDZmAflxHmdh" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/quentin/Bureau/cda/developper de composants d'interface/ajax",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ceef0218-d494-4ad8-b9a0-a89ee485f288" name="Changes" comment="" />
+      <created>1698071974485</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1698071974485</updated>
+      <workItem from="1698071975510" duration="371000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
