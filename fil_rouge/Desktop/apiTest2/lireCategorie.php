@@ -7,12 +7,8 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 $db = new PDO('mysql:host=localhost;charset=utf8;dbname=vente_bd2', 'admin', 'Afpa1234');
 
-$id = $_GET['id'];
+$requete = $db->query ("SELECT c.id, c.nom_categorie FROM categorie c join bd b on c.id = b.categorie_id group by b.categorie_id");
 
-$idInt = intval($id);
-
-$requete = $db->query ("SELECT b.id, titre, image_bd, auteur, editeur, date_edition, resume, prix, stock, nom_fourniseur, fournisseur_id, nom_categorie, b.categorie_id FROM bd b join fournisseur f on f.id = b.fournisseur_id join categorie c on c.id = b.categorie_id where b.id = " . $idInt);
-
-$resultat = $requete->fetch(PDO::FETCH_OBJ);
+$resultat = $requete->fetchAll(PDO::FETCH_OBJ);
 
 echo json_encode($resultat);

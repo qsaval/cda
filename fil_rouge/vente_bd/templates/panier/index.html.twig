@@ -55,10 +55,16 @@
                     <ul class="list-unstyled py-3 mb-0">
                         <li class="d-flex justify-content-between mb-2">Nombre de BD:<span class="fw-semibold ms-2">{{ quantite }}</span></li>
                     </ul>
+                    {% if app.user %}
                     {% if app.user.type == 'particulier' %}
                         {% set tva = total * 0.2 %}
                         {% set total = total * 1.2 %}
                     <div class="d-flex align-items-center justify-content-between border-top  fs-xl pt-4">TVA 20%:<span class="fw-semibold text-dark ms-2">{{ tva |number_format(2,',','.') }}€</span></div>
+                    {% endif %}
+                        {% else %}
+                            {% set tva = total * 0.2 %}
+                            {% set total = total * 1.2 %}
+                            <div class="d-flex align-items-center justify-content-between border-top  fs-xl pt-4">TVA 20%:<span class="fw-semibold text-dark ms-2">{{ tva |number_format(2,',','.') }}€</span></div>
                     {% endif %}
                     <div class="d-flex align-items-center justify-content-between fs-xl pt-4">Frais de livaison:<span class="fw-semibold text-dark ms-2">{% if total < 80 %} {% set frais = 5.00 %} {% set total = total + frais %} {{ frais|number_format(2,',','.') }}€ {% else%} 0,00€ {% endif %}</span></div>
                     <div class="d-flex align-items-center justify-content-between fs-xl pt-4">Total:<span class="fs-3 fw-semibold text-dark ms-2">{{ total|number_format(2,',','.') }}€</span></div>
