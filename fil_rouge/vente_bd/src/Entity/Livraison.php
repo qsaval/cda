@@ -28,9 +28,6 @@ class Livraison
     #[ORM\OneToMany(mappedBy: 'idLivraison', targetEntity: DetailLivraison::class)]
     private Collection $detailLivraisons;
 
-    #[ORM\ManyToOne(inversedBy: 'livraison')]
-    private ?Transporteur $transporteur = null;
-
     public function __construct()
     {
         $this->commande = new ArrayCollection();
@@ -122,18 +119,6 @@ class Livraison
                 $detailLivraison->setLivraison(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getTransporteur(): ?Transporteur
-    {
-        return $this->transporteur;
-    }
-
-    public function setTransporteur(?Transporteur $transporteur): static
-    {
-        $this->transporteur = $transporteur;
 
         return $this;
     }

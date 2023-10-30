@@ -9,9 +9,9 @@
     <div class="col-lg-4 mb-3 d-flex justify-content-center">
         <div class="card " style="width: 18rem;">
             <img src="/image/{{ bd.imageBd }}" class="card-img-top" alt="{{ bd.imageBd }}">
-            <div class="card-body">
-                <h2 class="card-title">{{ bd.titre }}</h2>
-                <a href="{{ path('app_bd', {'id': bd.id}) }}" class="btn btn-primary">Detail</a>
+            <div class="card-body d-flex align-items-start flex-column mb-3">
+                <h2 class="card-title mb-auto p-2">{{ bd.titre }}</h2>
+                <a href="{{ path('app_bd', {'id': bd.id}) }}" class="btn btn-primary p-2">Detail</a>
             </div>
         </div>
     </div>

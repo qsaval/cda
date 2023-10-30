@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PaiementController extends AbstractController
 {
-    #[Route('/paiement/{frais}', name: 'app_paiement')]
+    #[Route('/paiement', name: 'app_paiement')]
     public function index(float $frais, Request $request, BdRepository $repo, EntityManagerInterface $em, MailService $mailService, PanierService $panierService): Response
     {
         $session = $request->getSession();
@@ -30,7 +30,9 @@ class PaiementController extends AbstractController
         if ($this->getUser()->getType() == 'particulier'){
             $total = $total * 1.2;
         }
-
+        if ($total < 80){
+            $total = $total + 5;
+        }
         $total = $total + $frais;
 
         if($request->request->get('numcart') && $request->request->get('nompro') && $request->request->get('datevalid') && $request->request->get('numsecret')){

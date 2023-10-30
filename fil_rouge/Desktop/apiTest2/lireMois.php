@@ -13,6 +13,6 @@ $anneeInt = intval($annee);
 
 $requete = $db->query ("SELECT sum(montant_commande) as `chiffreAffaire`, year(date_commande) as annee, month(date_commande) as mois FROM commande where year(date_commande) =" . $anneeInt . " group by month(date_commande)");
 
-$resultat = $requete->fetch(PDO::FETCH_OBJ);
+$resultat = $requete->fetchAll(PDO::FETCH_OBJ);
 
 echo json_encode($resultat);

@@ -55,6 +55,14 @@ class AppFixtures extends Fixture
             $coms[] = $com;
         }
 
+        for ($a = 0; $a < 5; $a++){
+            $com = new Commande();
+            $com->setMontantCommande(mt_rand(20,35))
+                ->setDateCommande(new \DateTime())
+                ->setEtatCommande(mt_rand(0,3));
+            $manager->persist($com);
+        }
+
         for($p = 0; $p < 4; $p++){
             $dc = new Detail();
             $dc->setBd($bds[mt_rand(0,count($bds)-1)])

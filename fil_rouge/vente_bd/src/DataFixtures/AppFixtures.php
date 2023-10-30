@@ -87,21 +87,12 @@ class AppFixtures extends Fixture
             }
         }
 
-        for($t = 0;$t < 2; $t++){
-            $tran = new Transporteur();
-            $tran->setNomTransporteur($this->faker->word())
-                ->setFraisLivraison(mt_rand(0,20.00))
-                ->setFraisLivraisonRapide(mt_rand(0,20.00))
-                ->setTelephoneTransporteur($this->faker->phoneNumber());
-            $manager->persist($tran);
-
-            $trans[] = $tran;
-        }
 
         for($t = 0;$t < 2; $t++){
             $liv = new Livraison();
             $liv->setDateLivraison($this->faker->dateTime())
-                ->setTransporteur($trans[mt_rand(0,count($trans)-1)])
+                ->setNomTransporteur($this->faker->word())
+                ->setFraisLivraison(5.00)
                 ->setRetardEventuel(mt_rand(0,1) == 1 ? true:false);
             $manager->persist($liv);
 
