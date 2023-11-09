@@ -9,9 +9,11 @@ $key = $_GET['key'];
 $jwt = "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlF1ZW50aW4gU2F2YWwiLCJpYXQiOjE1MTYyMzkwMjJ9";
 
 if($key == $jwt){
-    $db = new PDO('mysql:host=localhost;charset=utf8;dbname=base_test', 'admin', 'Afpa1234');
+    $id = $_GET['id'];
 
-    $requete = $db->query ("SELECT nom_fourniseur, sum(nb_commander * prix_commander) as chiffre FROM fournisseur join bd on fournisseur.id = bd.fournisseur_id join detail on bd.id = detail.bd_id group by nom_fourniseur");
+    $db = new PDO('mysql:host=localhost;charset=utf8;dbname=vente_bd2', 'admin', 'Afpa1234');
+
+    $requete = $db->query ("SELECT b.id, titre, image_bd, auteur, editeur, date_edition, resume, prix, stock, nom_fourniseur, nom_categorie FROM bd b join fournisseur f on f.id = b.fournisseur_id join categorie c on c.id = b.categorie_id where b.categorie_id = " . $id);
 
     $resultat = $requete->fetchAll(PDO::FETCH_OBJ);
 

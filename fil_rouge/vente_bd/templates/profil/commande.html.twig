@@ -11,6 +11,7 @@
             <th scope="col">Etat</th>
             <th scope="col">total a payer</th>
             <th scope="col">Detail</th>
+            <th scope="col">Facture</th>
             <th scope="col">Annulée</th>
         </tr>
         </thead>
@@ -39,6 +40,7 @@
                 </td>
                 <td>{{ commande.montantCommande }}€</td>
                 <td><a class="btn btn-outline-primary" href="{{ path('app_commande_detail',{ 'users': app.user.id, 'commande': commande.id}) }}">Detail</a></td>
+                <td><a class="btn btn-outline-primary" href="/annexes/{{ commande.facture }}">Facture</a></td>
                 <td>
                     {% if commande.etatCommande != 2 and commande.etatCommande != 3 and commande.etatCommande != 4 %}
                         <a href="{{ path('app_commande_annulee', {'users': app.user.id, 'commande': commande.id}) }}" class="btn btn-outline-primary">Annulée</a>

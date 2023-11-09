@@ -5,14 +5,21 @@ header("Access-Control-Allow-Methods: DELETE");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-$json = file_get_contents('php://input', true);
+$key = $_GET['key'];
+$jwt = "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlF1ZW50aW4gU2F2YWwiLCJpYXQiOjE1MTYyMzkwMjJ9";
 
-$data = json_decode($json);
+if($key == $jwt){
+    $json = file_get_contents('php://input', true);
 
-$db = new PDO('mysql:host=localhost;charset=utf8;dbname=base_test', 'admin', 'Afpa1234');
-$requete = $db->prepare("delete from bd where id = :id");
-$requete->bindValue(':id', $data->id);
-$requete->execute();
+    $data = json_decode($json);
 
-echo('{ "message": "ok" }');
+    $db = new PDO('mysql:host=localhost;charset=utf8;dbname=vente_bd2', 'admin', 'Afpa1234');
+    $requete = $db->prepare("delete from bd where id = :id");
+    $requete->bindValue(':id', $data->id);
+    $requete->execute();
 
+    echo('{ "message": "ok" }');
+}
+else{
+    echo "la clé n'est pas la bonne";
+}

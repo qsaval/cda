@@ -5,14 +5,22 @@ header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-$db = new PDO('mysql:host=localhost;charset=utf8;dbname=vente_bd2', 'admin', 'Afpa1234');
+$key = $_GET['key'];
+$jwt = "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlF1ZW50aW4gU2F2YWwiLCJpYXQiOjE1MTYyMzkwMjJ9";
 
-$id = $_GET['id'];
+if($key == $jwt){
+    $db = new PDO('mysql:host=localhost;charset=utf8;dbname=vente_bd2', 'admin', 'Afpa1234');
 
-$idInt = intval($id);
+    $id = $_GET['id'];
 
-$requete = $db->query ("SELECT b.id, titre, image_bd, auteur, editeur, date_edition, resume, prix, stock, nom_fourniseur, fournisseur_id, nom_categorie, b.categorie_id FROM bd b join fournisseur f on f.id = b.fournisseur_id join categorie c on c.id = b.categorie_id where b.id = " . $idInt);
+    $idInt = intval($id);
 
-$resultat = $requete->fetch(PDO::FETCH_OBJ);
+    $requete = $db->query ("SELECT b.id, titre, image_bd, auteur, editeur, date_edition, resume, prix, stock, nom_fourniseur, fournisseur_id, nom_categorie, b.categorie_id FROM bd b join fournisseur f on f.id = b.fournisseur_id join categorie c on c.id = b.categorie_id where b.id = " . $idInt);
 
-echo json_encode($resultat);
+    $resultat = $requete->fetch(PDO::FETCH_OBJ);
+
+    echo json_encode($resultat);
+}
+else{
+    echo "la clé n'est pas la bonne";
+}

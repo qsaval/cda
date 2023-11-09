@@ -16,11 +16,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class PaiementController extends AbstractController
 {
     #[Route('/paiement', name: 'app_paiement')]
-    public function index(float $frais, Request $request, BdRepository $repo, EntityManagerInterface $em, MailService $mailService, PanierService $panierService): Response
+    public function index(Request $request, BdRepository $repo, EntityManagerInterface $em, MailService $mailService, PanierService $panierService): Response
     {
         $session = $request->getSession();
         $panier = $session->get('panier', []);
         $total = 0;
+        $frais = 0;
         foreach ($panier as $id => $quantite)
         {
             $bd = $repo->find($id);
@@ -28,12 +29,13 @@ class PaiementController extends AbstractController
         }
 
         if ($this->getUser()->getType() == 'particulier'){
+            $frais = $total * 0.2;
             $total = $total * 1.2;
         }
+
         if ($total < 80){
             $total = $total + 5;
         }
-        $total = $total + $frais;
 
         if($request->request->get('numcart') && $request->request->get('nompro') && $request->request->get('datevalid') && $request->request->get('numsecret')){
             $commande = new Commande();
@@ -78,7 +80,6 @@ class PaiementController extends AbstractController
 
 
         return $this->render('paiement/index.html.twig', [
-            'frais' => $frais,
             'total' => $total
         ]);
     }
