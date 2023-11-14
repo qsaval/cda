@@ -10,4 +10,4 @@ on retrouve de l'ajax et des diagramme uml
 on retrouve des exercice en react
 
 # fil rouge
-le fil rouge est un projet de site de e-commerce, il contient des ficher de base de donnée et aussi un projet symfony puis un api pour construire une application desktop et une application lobile
+le fil rouge est un projet de site de e-commerce, il contient des ficher de base de donnée et aussi un projet symfony puis un api pour construire une application desktop et une application mobile
