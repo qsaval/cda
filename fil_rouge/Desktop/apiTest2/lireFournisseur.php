@@ -9,7 +9,7 @@ $key = $_GET['key'];
 $jwt = "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlF1ZW50aW4gU2F2YWwiLCJpYXQiOjE1MTYyMzkwMjJ9";
 
 if($key == $jwt){
-    $db = new PDO('mysql:host=localhost;charset=utf8;dbname=base_test', 'admin', 'Afpa1234');
+    $db = new PDO('mysql:host=localhost;charset=utf8;dbname=vente_bd2', 'admin', 'Afpa1234');
 
     $requete = $db->query ("SELECT id, nom_fourniseur FROM fournisseur");
 
