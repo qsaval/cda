@@ -91,8 +91,6 @@ class AppFixtures extends Fixture
         for($t = 0;$t < 2; $t++){
             $liv = new Livraison();
             $liv->setDateLivraison($this->faker->dateTime())
-                ->setNomTransporteur($this->faker->word())
-                ->setFraisLivraison(5.00)
                 ->setRetardEventuel(mt_rand(0,1) == 1 ? true:false);
             $manager->persist($liv);
 
