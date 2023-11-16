@@ -31,5 +31,5 @@ if($key == $jwt){
     echo('{ "message": "ok" }');
 }
 else{
-    echo "la clé n'est pas la bonne";
+    echo ('{ "message": "la clé n\'est pas la bonne"}');
 }

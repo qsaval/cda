@@ -20,5 +20,5 @@ if($key == $jwt){
     echo json_encode($resultat);
 }
 else{
-    echo "la clé n'est pas la bonne";
+    echo ('{ "message": "la clé n\'est pas la bonne"}');
 }
