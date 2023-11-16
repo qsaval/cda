@@ -8,6 +8,7 @@
         <thead>
         <tr>
             <th scope="col">Date de commande</th>
+            <th scope="col">Date de livraison</th>
             <th scope="col">Etat</th>
             <th scope="col">total a payer</th>
             <th scope="col">Detail</th>
@@ -19,6 +20,11 @@
         {% for commande in commandes %}
             <tr>
                 <td>{{ commande.dateCommande|date('d/m/Y') }}</td>
+                <td>
+
+                    {{ commande.livraison.dateLivraison|date('d/m/Y') }}
+
+                </td>
                 <td>
                     {% if commande.etatCommande == 0 %}
                         Validée

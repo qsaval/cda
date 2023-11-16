@@ -18,6 +18,7 @@
             <th scope="col">Client</th>
             <th scope="col">Etat de la commande</th>
             <th scope="col">Montant</th>
+            <th scope="col">Retard de livraison</th>
         </tr>
     </thead>
     <tbody>
@@ -26,7 +27,7 @@
             <th scope="row">{{ commande.dateCommande|date('d/m/Y') }}</th>
             <td>{{ commande.user.nomUser }} {{ commande.user.prenomUser }}</td>
             <td>
-                <a href="{{ path('app_admin_commande_edit', {'id': commande.id}) }}" class="text-black link-offset-2 link-underline link-underline-opacity-0">
+                <a href="{{ path('app_admin_commande_edit', {'id': commande.id}) }}" class="text-black link-offset-2 link-underline link-underline-opacity-0 ms-5">
                     {% if commande.etatCommande == 0 %}
                         Validée
                     {% else %}
@@ -48,6 +49,15 @@
 
             </td>
             <td>{{ commande.montantCommande }}</td>
+            <td>
+                <a href="{{ path('app_admin_commande_retard',{"id": commande.id}) }}" class="text-black link-offset-2 link-underline link-underline-opacity-0 ps-2 ms-5">
+                    {% if commande.livraison.retardEventuel %}
+                        Oui
+                    {% else %}
+                        Non
+                    {%endif %}
+                </a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

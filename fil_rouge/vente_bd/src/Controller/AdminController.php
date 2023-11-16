@@ -7,6 +7,7 @@ use App\Entity\Commande;
 use App\Form\BdType;
 use App\Repository\BdRepository;
 use App\Repository\CommandeRepository;
+use App\Repository\LivraisonRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -78,6 +79,25 @@ class AdminController extends AbstractController
         return $this->render('admin/commande.html.twig', [
             'commandes' => $commande
         ]);
+    }
+
+    #[Route('/admin/commande/retard/{id}', name: 'app_admin_commande_retard')]
+    public function retard(Commande $commande, LivraisonRepository $repo, EntityManagerInterface $manager): Response
+    {
+        $livraison = $repo->findOneBy(['id' => $commande->getLivraison()->getId()]);
+
+        if ($livraison->isRetardEventuel()){
+            $livraison->setRetardEventuel(false);
+        }
+        else {
+            $livraison->setRetardEventuel(true);
+        }
+
+        $manager->persist($livraison);
+
+        $manager->flush();
+
+        return $this->redirectToRoute('app_admin_commande');
     }
 
     #[Route('/admin/commande/edition/{id}', name: 'app_admin_commande_edit')]

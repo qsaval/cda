@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Commande;
 use App\Entity\DetailCommande;
+use App\Entity\Livraison;
 use App\Repository\BdRepository;
 use App\Service\MailService;
 use App\Service\PanierService;
@@ -39,6 +40,7 @@ class PaiementController extends AbstractController
 
         if($request->request->get('numcart') && $request->request->get('nompro') && $request->request->get('datevalid') && $request->request->get('numsecret')){
             $commande = new Commande();
+            $livraison = new Livraison();
 
             foreach($panier as $id => $quantite)
             {
@@ -55,9 +57,14 @@ class PaiementController extends AbstractController
                 $commande->addDetailCommande($detail);
             }
 
+            $livraison->setDateLivraison(new \DateTimeImmutable('+1 week'))
+                ->setRetardEventuel(false);
+            $em->persist($livraison);
+
             $commande->setMontantCommande($total)
                 ->setEtatCommande(0)
                 ->setDateCommande(new \DateTimeImmutable())
+                ->setLivraison($livraison)
                 ->setUser($this->getUser())
                 ->setFacture('Facture.pdf')
                 ->setAdresseFacture($this->getUser()->getAdresseFacturation())
@@ -65,6 +72,9 @@ class PaiementController extends AbstractController
                 ->setVilleFacture($this->getUser()->getVilleFacturation())
                 ->setNbColis(1);
             $em->persist($commande);
+
+
+
 
             $em->flush();
 
