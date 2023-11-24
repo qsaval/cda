@@ -15,16 +15,17 @@ const Exercice3 = () => {
     }
 
     return (
-        <>
+        <div className="container composent">
             <h1>Exercice 3 :  Liste de courses</h1>
             <input type="text" placeholder="Element a ajouter ...." onChange={handleChange} value={newElement}/>
             <button type="submit" onClick={handleClick}>Ajouter</button>
             {elements.map((element) => (
                 <div key={element}>
+                    <br/>
                     {element}
                 </div>
             ))}
-        </>
+        </div>
     );
 }
 

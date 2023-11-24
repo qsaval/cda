@@ -9,10 +9,10 @@ const Exercice2 = () => {
     };
 
     return (
-        <>
+        <div className="container my-5 composent">
             <h1>Exercice2 : Compteur</h1>
             <button onClick={handleClick}>Compteur = {count}</button>
-        </>
+        </div>
     );
 }
 

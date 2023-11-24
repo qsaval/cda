@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Service Client{% endblock %}
+
+{% block body %}
+    <h1>Service Client</h1>
+    <form class="mt-4" method="post" action="/service_client">
+        <div class="row">
+            <div class="col-12">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="email" class="form-control">
+            </div>
+            <div class="col-12 mt-4">
+                <label for="question" class="form-label">Question</label>
+                <textarea name="question" id="question" class="form-control" rows="3"></textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Envoier</button>
+    </form>
+{% endblock %}

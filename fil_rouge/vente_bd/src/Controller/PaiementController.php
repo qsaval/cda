@@ -29,10 +29,8 @@ class PaiementController extends AbstractController
             $total = $total + ($bd->getPrix() * $quantite);
         }
 
-        if ($this->getUser()->getType() == 'particulier'){
-            $frais = $total * 0.2;
-            $total = $total * 1.2;
-        }
+        $frais = $total * 0.2;
+        $total = $total * 1.2;
 
         if ($total < 80){
             $total = $total + 5;
@@ -45,6 +43,7 @@ class PaiementController extends AbstractController
             foreach($panier as $id => $quantite)
             {
                 $bd = $repo->find($id);
+                $bd->setStock($bd->getStock() - $quantite);
 
                 $detail = new DetailCommande();
                 $detail->setBd($bd)
@@ -78,12 +77,12 @@ class PaiementController extends AbstractController
 
             $em->flush();
 
-//        $mailService->sendValide(
-//            'serviceClient@thedistrict.com',
-//            'Commande validée',
-//            'emails/valide.html.twig',
-//            $this->getUser()->getEmail()
-//        );
+        $mailService->sendValide(
+            'serviceClient@bd_cda.com',
+            'Commande validée',
+            'emails/valide.html.twig',
+            $this->getUser()->getEmail()
+        );
             $panierService->supprimerToutPanier();
             return $this->redirectToRoute('app_home');
         }

@@ -56,11 +56,9 @@
                         <li class="d-flex justify-content-between mb-2">Nombre de BD:<span class="fw-semibold ms-2">{{ quantite }}</span></li>
                     </ul>
                     {% if app.user %}
-                    {% if app.user.type == 'particulier' %}
                         {% set tva = total * 0.2 %}
                         {% set total = total * 1.2 %}
                     <div class="d-flex align-items-center justify-content-between border-top  fs-xl pt-4">TVA 20%:<span class="fw-semibold text-dark ms-2">{{ tva |number_format(2,',','.') }}€</span></div>
-                    {% endif %}
                         {% else %}
                             {% set tva = total * 0.2 %}
                             {% set total = total * 1.2 %}

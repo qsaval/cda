@@ -14,12 +14,12 @@ const Exercice1 = () => {
     }
 
     return (
-        <>
+        <div className="container mt-5">
             <h1>Exercice 1 </h1>
            <input type="text" placeholder="Votre nom" onChange={handleChangeNom} value={nom}/>
             <input type="type" placeholder="Votre prenom" onChange={handleChangePrenom} value={prenom}/>
             <p>Bonjour {nom} {prenom}</p>
-        </>
+        </div>
     );
 }
 
