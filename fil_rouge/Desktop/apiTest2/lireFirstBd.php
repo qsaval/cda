@@ -11,7 +11,7 @@ $jwt = "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlF1ZW50aW4gU2F2YWwiLCJpYXQiOjE1MTYy
 if($key == $jwt){
     $db = new PDO('mysql:host=localhost;charset=utf8;dbname=vente_bd2', 'admin', 'Afpa1234');
 
-    $requete = $db->query ("SELECT c.id, c.nom_categorie, c.image_categorie FROM categorie c join bd b on c.id = b.categorie_id group by b.categorie_id");
+    $requete = $db->query ("SELECT b.id, titre, image_bd, auteur, editeur, date_edition, resume, prix, stock, nom_fourniseur, fournisseur_id, nom_categorie, b.categorie_id FROM bd b join fournisseur f on f.id = b.fournisseur_id join categorie c on c.id = b.categorie_id  group by c.categorie_id order by b.id ASC ");
 
     $resultat = $requete->fetchAll(PDO::FETCH_OBJ);
 

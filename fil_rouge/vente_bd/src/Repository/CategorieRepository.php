@@ -47,6 +47,16 @@ class CategorieRepository extends ServiceEntityRepository
        ;
    }
 
+    public function findSousCat(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->join('c.categorie', 'm')
+            ->groupBy('c.id')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 //    public function findOneBySomeField($value): ?Categorie
 //    {
 //        return $this->createQueryBuilder('c')

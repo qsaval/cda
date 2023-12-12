@@ -37,16 +37,16 @@
                         </div>
                         <div class="row mb-4">
                             <div class="ms-3 d-flex col-xl-2 col-lg-3 col-sm-4 col-6">
-                                <a href="{{ path('app_panier_decrease', {id: bd.bd.id}) }}" class="btn btn-primary fs-xl" data-decrement="">-</a>
-                                <input class="form-control" type="text" value="{{ bd.quantite }}" readonly>
-                                {% if bd.quantite < bd.bd.stock %}
-                                    <a href="{{ path('app_panier_add', {id: bd.bd.id}) }}" class="btn btn-primary fs-xl">+</a>
+                                <a href="{{ path('app_panier_decrease', {id: bd.bd.id}) }}" class="btn btn-primary fs-xxl pt-2" data-decrement="">-</a>
+                                <input class="form-control w-25" type="text" value="{{ bd.quantite }}" readonly>
+                                {% if bd.quantite == bd.bd.stock %}
+                                    <button type="button" class="btn btn-primary fs-xl" disabled>+</button>
                                 {% else %}
-                                    <a href="{{ path('app_panier_add', {id: bd.bd.id}) }}" class="btn btn-primary fs-xl">+</a>
-                                {% endif %}  
+                                    <a href="{{ path('app_panier_add', {id: bd.bd.id}) }}" class="btn btn-primary fs-xl pt-2" >+</a>
+                                {% endif %}
                             </div>
-                            <div class="nav d-flex justify-content-end col-xl-9 col-lg-8 col-sm-7 col-5">
-                                <a href="{{ path('app_panier_remove', {id: bd.bd.id}) }}" class="nav-link fs-5" data-bs-toggle="tooltip" title="Remove">
+                            <div class="d-flex justify-content-end col-xl-9 col-lg-8 col-sm-7 col-5">
+                                <a href="{{ path('app_panier_remove', {id: bd.bd.id}) }}" class="fs-5" data-bs-toggle="tooltip" title="Remove">
                                     <i class='bx bxs-trash' ></i>
                                 </a>
                             </div>

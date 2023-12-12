@@ -6,6 +6,7 @@
 
     <h1 class="mt-3">Mes commande</h1>
     {% set total = 0 %}
+    {% set frais = 0 %}
     <table class="table">
         <thead>
         <tr>
@@ -21,17 +22,40 @@
                 <td>{{ detail.bd.titre }}</td>
                 <td>{{ detail.bd.prix }}€</td>
                 <td>{{ detail.nbCommander }}</td>
-                <td>{{ (detail.bd.prix * detail.nbCommander) }}€</td>
+                <td>{{ (detail.bd.prix * detail.nbCommander)|number_format(2) }}€</td>
                 {% set total = total + (detail.bd.prix * detail.nbCommander) %}
             </tr>
         {% endfor %}
-            <tr>
-                <td></td>
-                <td></td>
-                <td><b>total a payer</b></td>
-                <td><b>{{ total }}€</b></td>
-            </tr>
         </tbody>
     </table>
+
+
+
+    <div class="row d-flex justify-content-end">
+
+        <div class="col-4 ">
+            <div>
+                <div class="row">
+                    <div class="col-5">TVA 20%</div>
+                    {% set frais = total * 0.2 %}
+                    <div class="col-3 d-flex justify-content-center">{{ frais|number_format(2) }}€</div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-5">Frais de livraison</div>
+                    <div class="col-3 d-flex justify-content-center">5.00€</div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-5"><b>Total a payer</b></div>
+                    {% set total = total + frais %}
+                    <div class="col-3 d-flex justify-content-end"><b>{{ total|number_format(2) }}€</b></div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
 
 {% endblock %}

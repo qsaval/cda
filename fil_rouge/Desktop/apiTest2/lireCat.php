@@ -9,9 +9,10 @@ $key = $_GET['key'];
 $jwt = "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlF1ZW50aW4gU2F2YWwiLCJpYXQiOjE1MTYyMzkwMjJ9";
 
 if($key == $jwt){
+    $id = $_GET['id'];
     $db = new PDO('mysql:host=localhost;charset=utf8;dbname=vente_bd2', 'admin', 'Afpa1234');
 
-    $requete = $db->query ("SELECT c.id, c.nom_categorie, c.image_categorie FROM categorie c join bd b on c.id = b.categorie_id group by b.categorie_id");
+    $requete = $db->query ("SELECT c.id, c.nom_categorie, c.image_categorie FROM categorie c where c.categorie_id = " . $id);
 
     $resultat = $requete->fetchAll(PDO::FETCH_OBJ);
 

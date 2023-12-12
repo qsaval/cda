@@ -38,7 +38,6 @@ class BdType extends AbstractType
                 },
                 'choice_label' => 'nomCategorie'
             ])
-            // SELECT * FROM `categorie` m JOIN categorie f ON m.id = f.categorie_id GROUP BY m.id; 
             ->add('fournisseur', EntityType::class, [
                 'class' => Fournisseur::class,
                 'choice_label' => 'nomFourniseur'

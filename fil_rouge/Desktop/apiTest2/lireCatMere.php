@@ -11,7 +11,7 @@ $jwt = "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlF1ZW50aW4gU2F2YWwiLCJpYXQiOjE1MTYy
 if($key == $jwt){
     $db = new PDO('mysql:host=localhost;charset=utf8;dbname=vente_bd2', 'admin', 'Afpa1234');
 
-    $requete = $db->query ("SELECT c.id, c.nom_categorie, c.image_categorie FROM categorie c join bd b on c.id = b.categorie_id group by b.categorie_id");
+    $requete = $db->query ("SELECT m.id, m.nom_categorie, m.image_categorie FROM categorie m join categorie f on m.id = f.categorie_id  group by f.categorie_id");
 
     $resultat = $requete->fetchAll(PDO::FETCH_OBJ);
 

@@ -51,8 +51,6 @@ class PaiementController extends AbstractController
                     ->setPrixCommander($bd->getPrix());
                 $em->persist($detail);
 
-                $bd->setStock($bd->getStock() - $quantite);
-
                 $commande->addDetailCommande($detail);
             }
 

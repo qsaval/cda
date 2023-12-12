@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Bd;
+use App\Entity\Categorie;
 use App\Entity\Commande;
 use App\Form\BdType;
+use App\Form\CategorieType;
 use App\Repository\BdRepository;
+use App\Repository\CategorieRepository;
 use App\Repository\CommandeRepository;
 use App\Repository\LivraisonRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -111,5 +114,49 @@ class AdminController extends AbstractController
         $manager->flush();
 
         return $this->redirectToRoute('app_admin_commande');
+    }
+
+    #[Route('/admin/Categorie', name: 'app_admin_categorie')]
+    public function categorie(CategorieRepository $categorieRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $cat = $paginator->paginate(
+            $categorieRepository->findSousCat(),
+            $request->query->getInt('page', 1),
+            10
+        );
+
+        return $this->render('admin/categorie.html.twig', [
+            'categories' => $cat
+        ]);
+    }
+
+    #[Route('/admin/Categorie/ajout', name: 'app_admin_categorie_ajout')]
+    public function ajout_categorie(Request $request, EntityManagerInterface $manager): Response
+    {
+
+        $cat = new Categorie();
+        $form = $this->createForm(CategorieType::class, $cat);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $cat = $form->getData();
+            $manager->persist($cat);
+            $manager->flush();
+
+            return $this->redirectToRoute('app_admin_categorie');
+        };
+
+        return $this->render('admin/ajout_categorie.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    #[Route('//admin/Categorie/supprimer/{id}', name: 'app_admin_categorie_supprimer')]
+    public function supprimer_categorie(Categorie $cat, EntityManagerInterface $manager): Response
+    {
+        $manager->remove($cat);
+        $manager->flush();
+
+        return $this->redirectToRoute('app_admin_categorie');
     }
 }

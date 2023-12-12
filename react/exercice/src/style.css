@@ -1,3 +1,9 @@
 .carte{
     width: 18rem;
 }
+.composant {
+    border-radius: 5px;
+    border: 2px solid black;
+    margin: 10px;
+    padding: 5px;
+}

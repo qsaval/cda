@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import './style.css'
 const ThemovieDb = () => {
     const [data, setData] = useState([]);
     const [text, setText] = useState("");
@@ -23,8 +22,8 @@ const ThemovieDb = () => {
     }
 
     return (
-        <div className="container">
-            <hr/>
+        <div className="container composant">
+            <h1>TheMovieDB</h1>
             <div className="d-flex justify-content-center">
                 <input value={text} onChange={handleChange} />
                 <button onClick={handleClick}>rechercher</button>

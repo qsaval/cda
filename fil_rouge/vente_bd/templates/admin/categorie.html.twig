@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Adminitration{% endblock %}
+
+{% block body %}
+    <h1>Adminitration</h1>
+
+    <div class="container d-flex justify-content-center ">
+        <a class="btn btn-lg btn-primary me-5" href="{{ path('app_admin_commande') }}">commande</a>
+        <a class="btn btn-lg btn-primary me-5" href="{{ path('app_admin_bd') }}">BD</a>
+        <a class="btn btn-lg btn-primary" href="#">SousCategorie</a>
+    </div>
+
+    <div class="container d-flex justify-content-center mt-5">
+        <a class="btn btn-primary" href="{{ path('app_admin_categorie_ajout') }}">ajout une souscategorie</a>
+    </div>
+
+    <table class="table mt-5">
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Image</th>
+            <th scope="col">Categorie Parente</th>
+            <th scope="col">Suppretion</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for categorie in categories %}
+            <tr>
+                <th scope="row">{{ categorie.nomCategorie }}</th>
+                <td>{{ categorie.imageCategorie }}</td>
+                <td>
+                    {% if categorie.categorie == null %}
+                        <i class='bx bx-block'></i>
+                    {% else %}
+                        {{ categorie.categorie.nomCategorie }}
+                    {% endif %}
+                </td>
+                <td><a href="{{ path('app_admin_categorie_supprimer', {'id': categorie.id}) }}" class="btn btn-primary ms-5"><i class='bx bxs-trash' ></i></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation d-flex justify-content-center mt-4">
+        {{ knp_pagination_render(categories) }}
+    </div>
+{% endblock %}
