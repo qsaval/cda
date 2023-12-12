@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Adminitration{% endblock %}
+
+{% block body %}
+    <h1>Adminitration</h1>
+    {{ form(form) }}
+    <a class="btn btn-primary" href="{{ path('app_admin_categorie') }}">retour</a>
+{% endblock %} 

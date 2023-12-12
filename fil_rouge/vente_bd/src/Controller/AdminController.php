@@ -6,6 +6,7 @@ use App\Entity\Bd;
 use App\Entity\Categorie;
 use App\Entity\Commande;
 use App\Form\BdType;
+use App\Form\CategoriePType;
 use App\Form\CategorieType;
 use App\Repository\BdRepository;
 use App\Repository\CategorieRepository;
@@ -120,7 +121,7 @@ class AdminController extends AbstractController
     public function categorie(CategorieRepository $categorieRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $cat = $paginator->paginate(
-            $categorieRepository->findSousCat(),
+            $categorieRepository->findAll(),
             $request->query->getInt('page', 1),
             10
         );
@@ -140,6 +141,28 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $cat = $form->getData();
+            $manager->persist($cat);
+            $manager->flush();
+
+            return $this->redirectToRoute('app_admin_categorie');
+        };
+
+        return $this->render('admin/ajout_categorie.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    #[Route('/admin/CategorieP/ajout', name: 'app_admin_categoriep_ajout')]
+    public function ajout_categoriep(Request $request, EntityManagerInterface $manager): Response
+    {
+
+        $cat = new Categorie();
+        $form = $this->createForm(CategoriePType::class, $cat);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $cat = $form->getData();
+            $cat->setCategorie(null);
             $manager->persist($cat);
             $manager->flush();
 
