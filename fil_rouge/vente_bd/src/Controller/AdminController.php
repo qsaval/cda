@@ -169,7 +169,7 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('app_admin_categorie');
         };
 
-        return $this->render('admin/ajout_categorie.html.twig', [
+        return $this->render('admin/ajout_categoriep.html.twig', [
             'form' => $form->createView()
         ]);
     }

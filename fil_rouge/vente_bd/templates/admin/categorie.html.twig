@@ -32,12 +32,12 @@
                 <td>{{ categorie.imageCategorie }}</td>
                 <td>
                     {% if categorie.categorie == null %}
-                        <i class='bx bx-block'></i>
+                        <i class='bx bx-block ms-5'></i>
                     {% else %}
-                        {{ categorie.categorie.nomCategorie }}
+                        <p class="ms-5">{{ categorie.categorie.nomCategorie }}</p>
                     {% endif %}
                 </td>
-                <td><a href="{{ path('app_admin_categorie_supprimer', {'id': categorie.id}) }}" class="btn btn-primary ms-5"><i class='bx bxs-trash' ></i></a></td>
+                <td><a href="{{ path('app_admin_categorie_supprimer', {'id': categorie.id}) }}" class="btn btn-primary ms-3"><i class='bx bxs-trash' ></i></a></td>
             </tr>
             {% endfor %}
         </tbody>

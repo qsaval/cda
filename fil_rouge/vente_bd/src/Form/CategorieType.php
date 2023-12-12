@@ -10,6 +10,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class CategorieType extends AbstractType
 {
@@ -17,7 +18,9 @@ class CategorieType extends AbstractType
     {
         $builder
             ->add('nomCategorie')
-            ->add('imageCategorie')
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Image',
+            ])
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
                 'query_builder' => function (CategorieRepository $cr): QueryBuilder {
