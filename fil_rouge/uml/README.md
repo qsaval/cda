@@ -1,4 +1,4 @@
-# ULM
+# UML
 
 ## cas d'utilisation
 
