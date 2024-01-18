@@ -8,6 +8,6 @@
 
 ![diagramme de sequence](diagramme_sequence.png)
 
-## diagramme d'activiter
+## diagramme d'activite
 
 ![diagramme d'activiter](diagramme_activiter.png)
